@@ -175,7 +175,7 @@ else
        #patch -p1  --backup -d $aggDir/rt.equinox.bundles/bundles  -i $aggDir/tempPatches/sbep2.patch
        #patch -p1  --backup -d $aggDir/eclipse.platform.ui/features  -i $aggDir/tempPatches/e4rcpsource.patch
        #patch -p1  --backup -d $aggDir/rt.equinox.framework/bundles  -i $aggDir/tempPatches/ppc.patch
-       patch -p1  --backup -d $aggDir/rt.equinox.p2  -i $aggDir/tempPatches/useBREE.patch
+       patch -p0  --backup -d $aggDir/rt.equinox.p2  -i $aggDir/production/tempPatches/useBREE.patch
        checkForErrorExit $? "Error occurred applying patch"
     fi 
 
