@@ -1,0 +1,13 @@
+diff --git org.eclipse.equinox.p2.releng/org.eclipse.equinox.p2-parent/pom.xml org.eclipse.equinox.p2.releng/org.eclipse.equinox.p2-parent/pom.xml
+index 17d3afd..b3ed6f8 100644
+--- org.eclipse.equinox.p2.releng/org.eclipse.equinox.p2-parent/pom.xml
++++ org.eclipse.equinox.p2.releng/org.eclipse.equinox.p2-parent/pom.xml
+@@ -63,7 +63,7 @@
+           of their respective execution environments and we force compilation against
+           SYSTEM JRE libraries that are guaranteed to be java5+
+           -->
+-          <useJDK>SYSTEM</useJDK>
++          <useJDK>BREE</useJDK>
+         </configuration>
+       </plugin>
+     </plugins>
