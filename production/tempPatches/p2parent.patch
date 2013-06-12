@@ -1,61 +1,10 @@
 diff --git org.eclipse.equinox.p2.releng/org.eclipse.equinox.p2-parent/pom.xml org.eclipse.equinox.p2.releng/org.eclipse.equinox.p2-parent/pom.xml
-index b3ed6f8..63a6331 100644
+index b3ed6f8..4c01713 100644
 --- org.eclipse.equinox.p2.releng/org.eclipse.equinox.p2-parent/pom.xml
 +++ org.eclipse.equinox.p2.releng/org.eclipse.equinox.p2-parent/pom.xml
-@@ -5,83 +5,55 @@
-   are made available under the terms of the Eclipse Distribution License v1.0
-   which accompanies this distribution, and is available at
-   http://www.eclipse.org/org/documents/edl-v10.php
-- 
-+
-   Contributors:
-      Igor Fedorenko - initial implementation
- -->
- <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
--	<modelVersion>4.0.0</modelVersion>
--  
--  <parent>
-+    <modelVersion>4.0.0</modelVersion>
-+
-+    <parent>
-+        <groupId>org.eclipse</groupId>
-+        <artifactId>eclipse-platform-parent</artifactId>
-+        <relativePath>../../../eclipse-platform-parent</relativePath>
-+        <version>4.3.0-SNAPSHOT</version>
-+    </parent>
-+
-     <groupId>org.eclipse</groupId>
--    <artifactId>eclipse-platform-parent</artifactId>
--    <relativePath>../../../eclipse-platform-parent</relativePath>
-+    <artifactId>org.eclipse.equinox.p2-parent</artifactId>
-     <version>4.3.0-SNAPSHOT</version>
--  </parent>
--  
--	<groupId>org.eclipse</groupId>
--	<artifactId>org.eclipse.equinox.p2-parent</artifactId>
--	<version>4.3.0-SNAPSHOT</version>
--	<packaging>pom</packaging>
--
--  <properties>
--    <tycho.scmUrl>scm:git:git://git.eclipse.org/gitroot/equinox/rt.equinox.p2.git</tycho.scmUrl>
--  </properties>
-+    <packaging>pom</packaging>
- 
--  <repositories>
--    <repository>
--      <releases>
--        <enabled>true</enabled>
--      </releases>
--      <snapshots>
--        <enabled>true</enabled>
--      </snapshots>
--      <id>eclipse-hosted</id>
--      <url>https://repo.eclipse.org/content/repositories/eclipse/</url>
--    </repository>
--  </repositories>
-+    <properties>
-+        <tycho.scmUrl>scm:git:git://git.eclipse.org/gitroot/equinox/rt.equinox.p2.git</tycho.scmUrl>
-+    </properties>
+@@ -41,34 +41,6 @@
+     </repository>
+   </repositories>
  
 -  <build>
 -    <plugins>
@@ -84,47 +33,7 @@ index b3ed6f8..63a6331 100644
 -      </plugin>
 -    </plugins>
 -  </build>
-+    <repositories>
-+        <repository>
-+            <releases>
-+                <enabled>true</enabled>
-+            </releases>
-+            <snapshots>
-+                <enabled>true</enabled>
-+            </snapshots>
-+            <id>eclipse-hosted</id>
-+            <url>https://repo.eclipse.org/content/repositories/eclipse/</url>
-+        </repository>
-+    </repositories>
- 
--	<profiles>
--		<profile>
--			<id>osx</id>
--			<activation>
--				<property>
--					<name>java.vendor.url</name>
--					<value>http://www.apple.com/</value>
--				</property>
--			</activation>
--			<properties>
--				<tycho.test.jvmArgs>-Xmx800m -XX:MaxPermSize=256m -Dosgi.ws=cocoa -XstartOnFirstThread</tycho.test.jvmArgs>
--				<osgi.ws>cocoa</osgi.ws>
--			</properties>
--		</profile>
--	</profiles>
-+    <profiles>
-+        <profile>
-+            <id>osx</id>
-+            <activation>
-+                <property>
-+                    <name>java.vendor.url</name>
-+                    <value>http://www.apple.com/</value>
-+                </property>
-+            </activation>
-+            <properties>
-+                <tycho.test.jvmArgs>-Xmx800m -XX:MaxPermSize=256m -Dosgi.ws=cocoa -XstartOnFirstThread</tycho.test.jvmArgs>
-+                <osgi.ws>cocoa</osgi.ws>
-+            </properties>
-+        </profile>
-+    </profiles>
- </project>
+-
+ 	<profiles>
+ 		<profile>
+ 			<id>osx</id>
