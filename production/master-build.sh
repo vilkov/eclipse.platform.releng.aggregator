@@ -165,18 +165,19 @@ else
     $SCRIPT_PATH/update-build-input.sh $BUILD_ENV_FILE 2>&1 | tee $logsDirectory/mb020_update-build-input_output.txt
     checkForErrorExit $? "Error occurred while updating build input"
 
-    #if [[ $BUILD_ID =~ [IN] ]] 
-    #then
+if [[ $BUILD_ID =~ [IN] ]] 
+then
     # temp hack for bug 398141 and others
     # apply the pre-created patch from tempPatches
-    #echo "INFO: apply temp patch"
-    #echo "DEBUG: aggDir: $aggDir"
-    #echo "DEBUG: pwd: $PWD"
+    echo "INFO: apply temp patch"
+    echo "DEBUG: aggDir: $aggDir"
+    echo "DEBUG: pwd: $PWD"
     #patch -p1  --backup -d $aggDir/rt.equinox.bundles/bundles  -i $aggDir/tempPatches/sbep2.patch
     #patch -p1  --backup -d $aggDir/eclipse.platform.ui/features  -i $aggDir/tempPatches/e4rcpsource.patch
     #patch -p1  --backup -d $aggDir/rt.equinox.framework/bundles  -i $aggDir/tempPatches/ppc.patch
-    #checkForErrorExit $? "Error occurred applying patch"
-    #fi 
+    patch -p1  --backup -d $aggDir/rt.equinox.p2  -i $aggDir/production/tempPatches/p2parent.patch
+    checkForErrorExit $? "Error occurred applying patch"
+fi 
 
     # We always make tag commits, if build successful or not, but don't push
     # back to origin if doing N builds or test builds.
