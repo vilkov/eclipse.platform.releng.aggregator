@@ -266,12 +266,6 @@
         </executions>
       </plugin>
       
-   <resources>
-      <resource>
-        <directory>saveproperties</directory>
-        <filtering>true</filtering>
-      </resource>
-    </resources>
     </plugins>
     <pluginManagement>
       <plugins>
@@ -683,6 +677,14 @@
             </executions>
           </plugin>
         </plugins>
+        
+    <resources>
+      <resource>
+        <directory>saveproperties</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+        
       </build>
     </profile>
   </profiles>
