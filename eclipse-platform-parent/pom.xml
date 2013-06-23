@@ -686,9 +686,11 @@
                 <id>runAntTarget</id>
                 <phase>generate-resources</phase>
                 <configuration>
-                  <propertyPrefix>mvn</propertyPrefix>
+                  <propertyPrefix>mvn.</propertyPrefix>
                   <target>
-                    <echoproperties destfile="saveproperties/mvn.properties"/>
+                  <!-- inherited. Only write properties (and do not fail) if 
+                      'saveproperties' directory does not exist. -->
+                    <echoproperties failonerror="false" destfile="saveproperties/mvn.properties"/>
                   </target>
                 </configuration>
                 <goals>
