@@ -247,6 +247,31 @@
           </execution>
         </executions>
       </plugin>
+            <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>2.5</version>
+        <executions>
+          <execution>
+            <id>filter-resources</id>
+            <goals>
+              <goal>resources</goal>
+            </goals>
+            <phase>process-resources</phase>
+            <configuration>
+              <outputDirectory>${project.build.directory}/resources</outputDirectory>
+          <escapeString>\</escapeString>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      
+   <resources>
+      <resource>
+        <directory>saveproperties</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
     </plugins>
     <pluginManagement>
       <plugins>
@@ -661,12 +686,4 @@
       </build>
     </profile>
   </profiles>
-  <build>
-      <resources>
-      <resource>
-        <directory>saveproperties</directory>
-        <filtering>true</filtering>
-      </resource>
-    </resources>
-  </build>
 </project>
