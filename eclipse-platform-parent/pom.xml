@@ -661,4 +661,12 @@
       </build>
     </profile>
   </profiles>
+  <build>
+      <resources>
+      <resource>
+        <directory>saveproperties</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+  </build>
 </project>
