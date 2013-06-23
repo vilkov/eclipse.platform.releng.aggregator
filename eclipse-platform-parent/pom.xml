@@ -688,7 +688,7 @@
                 <configuration>
                   <propertyPrefix>mvn</propertyPrefix>
                   <target>
-                    <echoproperties dest="saveproperties/mvn.properties"/>
+                    <echoproperties destfile="saveproperties/mvn.properties"/>
                   </target>
                 </configuration>
                 <goals>
