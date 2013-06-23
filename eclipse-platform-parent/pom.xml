@@ -676,8 +676,28 @@
               </execution>
             </executions>
           </plugin>
-        </plugins>
         
+     
+        <plugin>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <version>1.7</version>
+            <executions>
+              <execution>
+                <id>runAntTarget</id>
+                <phase>generate-resources</phase>
+                <configuration>
+                  <propertyPrefix>mvn</propertyPrefix>
+                  <target>
+                    <echoproperties dest="saveproperties/mvn.properties"/>
+                  </target>
+                </configuration>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+              </execution>
+            </executions>
+           </plugin>
+        </plugins>        
     <resources>
       <resource>
         <directory>saveproperties</directory>
