@@ -21,10 +21,17 @@
     <buildTimestamp>${maven.build.timestamp}</buildTimestamp>
     <buildType>I</buildType>
     <buildId>${buildType}${buildTimestamp}</buildId>
-    <comparator.repo>http://download.eclipse.org/eclipse/updates/4.4-I-builds</comparator.repo>
     <tycho.version>0.18.0</tycho.version>
     <tycho-extras.version>0.18.0</tycho-extras.version>
     <cbi-plugins.version>1.0.3</cbi-plugins.version>
+    <!-- 
+      The tycho-eclipserun-plugin will create its instance of Eclipse from this 
+      'eclipiserun-repo' repository, such as for computing .api-descriptions.
+    -->
+    <eclipserun-repo>http://download.eclipse.org/eclipse/updates/4.3/R-4.3-201306052000/</eclipserun-repo>
+
+    <comparator.repo>http://download.eclipse.org/eclipse/updates/4.4-I-builds</comparator.repo>
+
     <orbit-repo.url>http://download.eclipse.org/tools/orbit/downloads/drops/R20130517111416/repository/</orbit-repo.url>
     <jetty-repo.url>http://download.eclipse.org/jetty/updates/jetty-bundles-8.x/8.1.10.v20130312/</jetty-repo.url>
     <ecf-repo.url>http://download.eclipse.org/rt/ecf/int7/site.p2/</ecf-repo.url>
@@ -634,7 +641,7 @@
                 <repository>
                   <id>eclipse</id>
                   <layout>p2</layout>
-                  <url>http://download.eclipse.org/eclipse/updates/4.3/R-4.3-201306052000/</url>
+                  <url>${eclipserun-repo}</url>
                 </repository>
               </repositories>
               <!-- this is to fix some lucene 3.x compatibility issue -->
