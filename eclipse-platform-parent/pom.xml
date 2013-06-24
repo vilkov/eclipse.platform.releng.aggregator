@@ -41,8 +41,7 @@
     <eclipse-repo.url>https://repo.eclipse.org/content/repositories/releases/</eclipse-repo.url>
     <!-- this eclipse-p2-repo.url is specifically for the build individual bundles profile. -->
     <eclipse-p2-repo.url>http://download.eclipse.org/eclipse/updates/4.4-I-builds</eclipse-p2-repo.url>
-    <!-- Use 'notDebugProperties' to avoid antrun, and 'debugProperties' to do antrun listing all properties. -->
-    <notDebugProperties>true</notDebugProperties>
+
   </properties>
   <repositories>
     <repository>
@@ -679,32 +678,6 @@
               </execution>
             </executions>
           </plugin>
-        
-     
-        <plugin>
-            <artifactId>maven-antrun-plugin</artifactId>
-            <version>1.7</version>
-            <executions>
-              <execution>
-                <id>runAntTarget</id>
-                <phase>generate-resources</phase>
-                <configuration>
-                  <propertyPrefix>mvn.</propertyPrefix>
-                  <target if="debugProperties" unless="notDebugProperties" description="DEBUG task to explore available properties.">
-                  <!-- 
-                      Inherited to all "children". Only write properties if 
-                      'saveproperties' directory exists in projects/module 
-                      (and do not "fail") if directory does not exist. 
-                  -->
-                    <echoproperties failonerror="false" destfile="saveproperties/mvn.properties"/>
-                  </target>
-                </configuration>
-                <goals>
-                  <goal>run</goal>
-                </goals>
-              </execution>
-            </executions>
-           </plugin>
         </plugins>        
     <resources>
       <!-- 
