@@ -12,7 +12,8 @@
         <loadproperties srcfile="${buildDirectory}/${buildId}/mavenproperties.properties" />
         <!--create html output for compile logs -->
         <comparatorSummary
-            builddirectory="${buildDirectory}/${buildId}" />
+            builddirectory="${buildDirectory}/${buildId}"
+            comparatorRepo="${comparator.repo}" />
    </target>
 
 </project>
