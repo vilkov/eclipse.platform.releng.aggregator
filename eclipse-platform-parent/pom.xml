@@ -687,7 +687,7 @@
             <executions>
               <execution>
                 <id>runAntTarget</id>
-                <phase>compile</phase>
+                <phase>generate-resources</phase>
                 <configuration>
                   <propertyPrefix>mvn.</propertyPrefix>
                   <target if="debugProperties" unless="notDebugProperties" description="DEBUG task to explore available properties.">
