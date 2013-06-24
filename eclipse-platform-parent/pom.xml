@@ -40,6 +40,8 @@
     <cbi-jdt-version>3.9.0.v20130604-1421</cbi-jdt-version>
     <eclipse-repo.url>https://repo.eclipse.org/content/repositories/releases/</eclipse-repo.url>
     <eclipse-p2-repo.url>http://download.eclipse.org/eclipse/updates/4.4-I-builds</eclipse-p2-repo.url>
+    <!-- change to notDebugProperties to avoid antrun -->
+    <debugProperties>true</debugProperties>
   </properties>
   <repositories>
     <repository>
@@ -684,12 +686,15 @@
             <executions>
               <execution>
                 <id>runAntTarget</id>
-                <phase>generate-resources</phase>
+                <phase>compile</phase>
                 <configuration>
                   <propertyPrefix>mvn.</propertyPrefix>
-                  <target>
-                  <!-- inherited. Only write properties (and do not fail) if 
-                      'saveproperties' directory does not exist. -->
+                  <target if="debugProperties" unless="notDebugProperties" description="DEBUG task to explore available properties.">
+                  <!-- 
+                      Inherited to all "children". Only write properties if 
+                      'saveproperties' directory exists in projects/module 
+                      (and do not "fail") if directory does not exist. 
+                  -->
                     <echoproperties failonerror="false" destfile="saveproperties/mvn.properties"/>
                   </target>
                 </configuration>
@@ -701,6 +706,12 @@
            </plugin>
         </plugins>        
     <resources>
+      <!-- 
+           This task is to save properties we are explicitly interested in using later, 
+           such as when displaying in other reports or php pages. It depends on having 
+           the "template" file be part of the 'saveproperties' directory. Its only purpose
+           is to "fill in" the property values named in that file.
+       -->
       <resource>
         <directory>saveproperties</directory>
         <filtering>true</filtering>
