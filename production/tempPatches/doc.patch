@@ -1,0 +1,80 @@
+diff --git bundles/org.eclipse.jdt.doc.isv/pom.xml bundles/org.eclipse.jdt.doc.isv/pom.xml
+index 0e7602e..de4becd 100644
+--- bundles/org.eclipse.jdt.doc.isv/pom.xml
++++ bundles/org.eclipse.jdt.doc.isv/pom.xml
+@@ -126,9 +126,9 @@
+                   </dependencies>
+                   <repositories>
+                     <repository>
+-                      <id>juno-42</id>
++                      <id>eclipse</id>
+                       <layout>p2</layout>
+-                      <url>http://download.eclipse.org/eclipse/updates/4.2</url>
++                      <url>${eclipserun-repo}</url>
+                     </repository>
+                   </repositories>
+                 </configuration>
+diff --git bundles/org.eclipse.jdt.doc.user/pom.xml bundles/org.eclipse.jdt.doc.user/pom.xml
+index c770e9e..ba8c55e 100644
+--- bundles/org.eclipse.jdt.doc.user/pom.xml
++++ bundles/org.eclipse.jdt.doc.user/pom.xml
+@@ -61,9 +61,9 @@
+                   </dependencies>
+                   <repositories>
+                     <repository>
+-                      <id>juno-42</id>
++                      <id>eclipse</id>
+                       <layout>p2</layout>
+-                      <url>http://download.eclipse.org/eclipse/updates/4.2</url>
++                      <url>${eclipserun-repo}</url>
+                     </repository>
+                   </repositories>
+                 </configuration>
+diff --git bundles/org.eclipse.pde.doc.user/pom.xml bundles/org.eclipse.pde.doc.user/pom.xml
+index fdc08bf..b070e67 100644
+--- bundles/org.eclipse.pde.doc.user/pom.xml
++++ bundles/org.eclipse.pde.doc.user/pom.xml
+@@ -117,9 +117,9 @@
+                   </dependencies>
+                   <repositories>
+                     <repository>
+-                      <id>juno-42</id>
++                      <id>eclipse</id>
+                       <layout>p2</layout>
+-                      <url>http://download.eclipse.org/eclipse/updates/4.2</url>
++                      <url>${eclipserun-repo}</url>
+                     </repository>
+                   </repositories>
+                 </configuration>
+diff --git bundles/org.eclipse.platform.doc.isv/pom.xml bundles/org.eclipse.platform.doc.isv/pom.xml
+index 370cd21..e94ad0d 100644
+--- bundles/org.eclipse.platform.doc.isv/pom.xml
++++ bundles/org.eclipse.platform.doc.isv/pom.xml
+@@ -280,9 +280,9 @@
+                   </dependencies>
+                   <repositories>
+                     <repository>
+-                      <id>juno-42</id>
++                      <id>eclipse</id>
+                       <layout>p2</layout>
+-                      <url>http://download.eclipse.org/eclipse/updates/4.2</url>
++                      <url>${eclipserun-repo}</url>
+                     </repository>
+                   </repositories>
+                 </configuration>
+diff --git bundles/org.eclipse.platform.doc.user/pom.xml bundles/org.eclipse.platform.doc.user/pom.xml
+index 4672034..fdbcb86 100644
+--- bundles/org.eclipse.platform.doc.user/pom.xml
++++ bundles/org.eclipse.platform.doc.user/pom.xml
+@@ -61,9 +61,9 @@
+                   </dependencies>
+                   <repositories>
+                     <repository>
+-                      <id>juno-42</id>
++                      <id>eclipse</id>
+                       <layout>p2</layout>
+-                      <url>http://download.eclipse.org/eclipse/updates/4.2</url>
++                      <url>${eclipserun-repo}</url>
+                     </repository>
+                   </repositories>
+                 </configuration>
