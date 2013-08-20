@@ -381,6 +381,8 @@ fn-maven-build-aggregator ()
         MARGS="$MARGS -Pupdate-branding-plugins"
     fi
     MARGS="$MARGS ${MAVEN_BREE}"
+    
+    MARGS="$MARGS -P -P '!api-generation'"
 
     # Here we count on $BUILD_TYPE being exported. TODO: make parameter later? 
     if [[ -n "$BUILD_TYPE" && "$BUILD_TYPE" == "N" ]] 
