@@ -69,7 +69,7 @@ export BUILD_HOME=${BUILD_HOME:-/shared/eclipse/builds}
 # no override for minimal $PATH
 #export PATH=$JAVA_HOME/bin:$MAVEN_PATH:$ANT_HOME/bin:$PATH
 
-export BRANCH=master
+export BRANCH=david_williams/testBranch2
 export BUILD_TYPE=I
 export STREAM=4.4.0
 
@@ -95,7 +95,7 @@ $BUILD_HOME/bootstrap.sh $BRANCH $BUILD_TYPE $STREAM 1>>$LOG_OUT_NAME 2>>$LOG_ER
 #mvn -version >> $BOOTSTRAPENVFILE
 #echo "= = = = = " >> $BOOTSTRAPENVFILE
 
-${BUILD_ROOT}/${PRODUCTION_SCRIPTS_DIR}/master-build.sh ${BUILD_ROOT}/${PRODUCTION_SCRIPTS_DIR}/build_eclipse_org.shsource 1>>$LOG_OUT_NAME 2>>$LOG_ERR_NAME &
+time ${BUILD_ROOT}/${PRODUCTION_SCRIPTS_DIR}/master-build.sh ${BUILD_ROOT}/${PRODUCTION_SCRIPTS_DIR}/build_eclipse_org.shsource 1>>$LOG_OUT_NAME 2>>$LOG_ERR_NAME &
 
 rc=$?
 if [[ $rc != 0 ]]
