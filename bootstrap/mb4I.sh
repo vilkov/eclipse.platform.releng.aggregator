@@ -95,10 +95,13 @@ $BUILD_HOME/bootstrap.sh $BRANCH $BUILD_TYPE $STREAM 1>>$LOG_OUT_NAME 2>>$LOG_ER
 #mvn -version >> $BOOTSTRAPENVFILE
 #echo "= = = = = " >> $BOOTSTRAPENVFILE
 
-time ${BUILD_ROOT}/${PRODUCTION_SCRIPTS_DIR}/master-build.sh ${BUILD_ROOT}/${PRODUCTION_SCRIPTS_DIR}/build_eclipse_org.shsource 1>>$LOG_OUT_NAME 2>>$LOG_ERR_NAME &
+BUILD_CMD=${BUILD_ROOT}/${PRODUCTION_SCRIPTS_DIR}/master-build.sh ${BUILD_ROOT}/${PRODUCTION_SCRIPTS_DIR}/build_eclipse_org.shsource 1>>$LOG_OUT_NAME 2>>$LOG_ERR_NAME 
+echo "BUILD_CMD: $BUILD_CMD"
+#/usr/bin/time -f "%E real,%U user,%S sys" ${BUILD_ROOT}/${PRODUCTION_SCRIPTS_DIR}/master-build.sh ${BUILD_ROOT}/${PRODUCTION_SCRIPTS_DIR}/build_eclipse_org.shsource 1>>$LOG_OUT_NAME 2>>$LOG_ERR_NAME &
+/usr/bin/time -f "%E real,%U user,%S sys" ${BUILD_CMD} 
 
 rc=$?
 if [[ $rc != 0 ]]
 then 
-    echo "BUILD FAILED. See run-maven-build-ouptut.txt." >&2
+    echo "BUILD FAILED. See log files." >&2
 fi
