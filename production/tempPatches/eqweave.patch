@@ -1,24 +1,12 @@
-diff --git a/bundles/org.eclipse.equinox.weaving.aspectj/pom.xml b/bundles/org.eclipse.equinox.weaving.aspectj/pom.xml
-index 6daa911..ca20e6a 100644
---- a/bundles/org.eclipse.equinox.weaving.aspectj/pom.xml
-+++ b/bundles/org.eclipse.equinox.weaving.aspectj/pom.xml
-@@ -9,7 +9,10 @@
-   Contributors:
-      Igor Fedorenko - initial implementation
- -->
--<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-+<project
-+  xmlns="http://maven.apache.org/POM/4.0.0"
-+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-   <modelVersion>4.0.0</modelVersion>
-   <parent>
-     <artifactId>rt.equinox.bundles</artifactId>
-@@ -21,4 +24,26 @@
+diff --git bundles/org.eclipse.equinox.weaving.aspectj/pom.xml bundles/org.eclipse.equinox.weaving.aspectj/pom.xml
+index 6daa911..f7b6b97 100644
+--- bundles/org.eclipse.equinox.weaving.aspectj/pom.xml
++++ bundles/org.eclipse.equinox.weaving.aspectj/pom.xml
+@@ -21,4 +21,27 @@
    <artifactId>org.eclipse.equinox.weaving.aspectj</artifactId>
    <version>1.0.400-SNAPSHOT</version>
    <packaging>eclipse-plugin</packaging>
-+
++  
 +  <build>
 +    <plugins>
 +      <plugin>
@@ -39,5 +27,6 @@ index 6daa911..ca20e6a 100644
 +      </plugin>
 +    </plugins>
 +  </build>
-+
++   
++  
  </project>
