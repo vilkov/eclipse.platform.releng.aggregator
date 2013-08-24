@@ -15,7 +15,7 @@ if [ ! -r "$INITIAL_ENV_FILE" ]; then
     exit 1
 fi
 
-export BUILD_TIME_PATCHES=${BUILD_TIME_PATCHES:-false}
+export BUILD_TIME_PATCHES=${BUILD_TIME_PATCHES:-true}
 
 export SCRIPT_PATH="${BUILD_ROOT}/production"
 
@@ -179,7 +179,7 @@ else
         # temp hack for bug 398141 and others
         # apply the pre-created patch from tempPatches
         echo "INFO: apply temp patch, if any"
-        patch -p1  --backup -d $aggDir/eclipse.platform.ui/bundles  -i $aggDir/production/tempPatches/ui.patch
+        patch -p1  --backup -d $aggDir/eclipse.platform.ui/bundles  -i $aggDir/production/tempPatches/eqweave.patch
         checkForErrorExit $? "Error occurred applying patch"
     fi 
 
