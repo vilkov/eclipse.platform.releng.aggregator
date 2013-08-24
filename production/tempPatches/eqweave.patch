@@ -1,0 +1,43 @@
+diff --git a/bundles/org.eclipse.equinox.weaving.aspectj/pom.xml b/bundles/org.eclipse.equinox.weaving.aspectj/pom.xml
+index 6daa911..ca20e6a 100644
+--- a/bundles/org.eclipse.equinox.weaving.aspectj/pom.xml
++++ b/bundles/org.eclipse.equinox.weaving.aspectj/pom.xml
+@@ -9,7 +9,10 @@
+   Contributors:
+      Igor Fedorenko - initial implementation
+ -->
+-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
++<project
++  xmlns="http://maven.apache.org/POM/4.0.0"
++  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
++  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+   <parent>
+     <artifactId>rt.equinox.bundles</artifactId>
+@@ -21,4 +24,26 @@
+   <artifactId>org.eclipse.equinox.weaving.aspectj</artifactId>
+   <version>1.0.400-SNAPSHOT</version>
+   <packaging>eclipse-plugin</packaging>
++
++  <build>
++    <plugins>
++      <plugin>
++        <groupId>org.eclipse.tycho</groupId>
++        <artifactId>target-platform-configuration</artifactId>
++        <configuration>
++          <dependency-resolution>
++            <extraRequirements>
++                        <!-- this guarantees proper reactor build order  -->
++              <requirement>
++                <type>eclipse-plugin</type>
++                <id>org.aspectj.weaver</id>
++                <versionRange>0.0.0</versionRange>
++              </requirement>
++            </extraRequirements>
++          </dependency-resolution>
++        </configuration>
++      </plugin>
++    </plugins>
++  </build>
++
+ </project>
