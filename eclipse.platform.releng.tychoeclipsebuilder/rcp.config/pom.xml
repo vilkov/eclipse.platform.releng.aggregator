@@ -98,36 +98,6 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>copy-resources-gtk.linux.s390</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>copy-resources</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${basedir}/rootfiles/linux.gtk.s390</outputDirectory>
-                            <resources>
-                                <resource>
-                                    <directory>../../eclipse.platform.swt.binaries/bundles/org.eclipse.swt.gtk.linux.s390
-                                    </directory>
-                                    <includes>
-                                        <include>about_files/*</include>
-                                        <include>about.html</include>
-                                    </includes>
-                                </resource>
-                                <resource>
-                                    <directory>../../rt.equinox.binaries/org.eclipse.equinox.executable/contributed/gtk/linux/s390
-                                    </directory>
-                                    <includes>
-                                        <include>eclipse</include>
-                                    </includes>
-                                    <excludes>
-                                      <exclude>**/icon.xpm</exclude>
-                                    </excludes>
-                                </resource>
-                            </resources>
-                        </configuration>
-                    </execution>
-                    <execution>
                         <id>copy-resources-gtk.linux.s390x</id>
                         <phase>validate</phase>
                         <goals>
@@ -144,65 +114,130 @@
                                         <include>about.html</include>
                                     </includes>
                                 </resource>
-                                <resource>
-                                    <directory>../../rt.equinox.binaries/org.eclipse.equinox.executable/contributed/gtk/linux/s390x
-                                    </directory>
-                                    <includes>
-                                        <include>eclipse</include>
-                                    </includes>
-                                    <excludes>
-                                      <exclude>**/icon.xpm</exclude>
-                                    </excludes>
-                                </resource>
                             </resources>
                         </configuration>
                     </execution>
                     <execution>
-                        <id>copy-resources-macosx.cocoa.x86_64</id>
+                        <id>copy-resources-gtk.linux.s390</id>
                         <phase>validate</phase>
                         <goals>
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${basedir}/rootfiles/macosx.cocoa.x86_64</outputDirectory>
+                            <outputDirectory>${basedir}/rootfiles/linux.gtk.s390</outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>../../rt.equinox.framework/features/org.eclipse.equinox.executable.feature/bin/cocoa/macosx/x86_64 
+                                    <directory>../../eclipse.platform.swt.binaries/bundles/org.eclipse.swt.gtk.linux.s390
                                     </directory>
                                     <includes>
-                                        <include>**/*</include>
+                                        <include>about_files/*</include>
+                                        <include>about.html</include>
                                     </includes>
-                                    <excludes>
-                                      <exclude>**/Eclipse.icns</exclude>
-                                      <exclude>**/Info.plist</exclude>
-                                    </excludes>
                                 </resource>
                             </resources>
                         </configuration>
                     </execution>
                     <execution>
-                        <id>copy-resources-macosx.cocoa.x86</id>
+                        <id>copy-resources-gtk.aix.ppc</id>
                         <phase>validate</phase>
                         <goals>
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${basedir}/rootfiles/macosx.cocoa.x86</outputDirectory>
+                            <outputDirectory>${basedir}/rootfiles/aix.gtk.ppc</outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>../../rt.equinox.framework/features/org.eclipse.equinox.executable.feature/bin/cocoa/macosx/x86
+                                    <directory>../../eclipse.platform.swt.binaries/bundles/org.eclipse.swt.gtk.aix.ppc
                                     </directory>
                                     <includes>
-                                        <include>**/*</include>
+                                        <include>about_files/*</include>
+                                        <include>about.html</include>
                                     </includes>
-                                    <excludes>
-                                      <exclude>**/Eclipse.icns</exclude>
-                                      <exclude>**/Info.plist</exclude>
-                                    </excludes>
                                 </resource>
                             </resources>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>copy-resources-gtk.aix.ppc64</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${basedir}/rootfiles/aix.gtk.ppc64</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>../../eclipse.platform.swt.binaries/bundles/org.eclipse.swt.gtk.aix.ppc64
+                                    </directory>
+                                    <includes>
+                                        <include>about_files/*</include>
+                                        <include>about.html</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-resources-gtk.hpux.ia64</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${basedir}/rootfiles/hpux.gtk.ia64</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>../../eclipse.platform.swt.binaries/bundles/org.eclipse.swt.gtk.hpux.ia64
+                                    </directory>
+                                    <includes>
+                                        <include>about_files/*</include>
+                                        <include>about.html</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-resources-gtk.solaris.sparc</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${basedir}/rootfiles/solaris.gtk.sparc</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>../../eclipse.platform.swt.binaries/bundles/org.eclipse.swt.gtk.solaris.sparc
+                                    </directory>
+                                    <includes>
+                                        <include>about_files/*</include>
+                                        <include>about.html</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-resources-gtk.solaris.x86</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${basedir}/rootfiles/solaris.gtk.x86</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>../../eclipse.platform.swt.binaries/bundles/org.eclipse.swt.gtk.solaris.x86
+                                    </directory>
+                                    <includes>
+                                        <include>about_files/*</include>
+                                        <include>about.html</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <!-- windows has that special "eclipsec.exe" we must "copy up" -->
                     <execution>
                       <id>copy-resources-win32.win32.x86</id>
                       <phase>validate</phase>
@@ -215,6 +250,7 @@
                         <resources>
                           <resource>
                             <directory>../../rt.equinox.binaries/org.eclipse.equinox.executable/bin/win32/win32/x86</directory>
+                            <include>eclipsec.exe</include>
                           </resource>
                         </resources>
                       </configuration>
@@ -231,7 +267,8 @@
                         <resources>
                           <resource>
                             <directory>../../rt.equinox.binaries/org.eclipse.equinox.executable/bin/win32/win32/x86_64</directory>
-                          </resource>
+                            <include>eclipsec.exe</include>
+                           </resource>
                         </resources>
                       </configuration>
                     </execution>
