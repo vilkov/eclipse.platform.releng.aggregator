@@ -5,9 +5,6 @@
 
     <target name="init">
         <property 
-            name="configs"
-            value="win32,win32,x86 &amp; win32,win32,x86_64 &amp; macosx,cocoa,x86 &amp; macosx,cocoa,x86_64 &amp; linux,gtk,x86 &amp; linux,gtk,x86_64 &amp; linux,gtk,ppc &amp; linux,gtk,ppc64 &amp; aix,gtk,ppc &amp; aix,gtk,ppc64 &amp; hpux,gtk,ia64 &amp; solaris,gtk,sparc &amp; solaris,gtk,x86 &amp; linux,gtk,s390x &amp; linux,gtk,s390" />
-        <property
             name="archiveRoot"
             value="eclipse-${buildId}" />
         <property
@@ -86,7 +83,8 @@
             <slicingOptions
                 includeOptional="false"
                 includeNonGreedy="false"
-                followStrict="true"
+                followStrict="false"
+                filter="(|(&amp;(osgi.os=win32)(osgi.ws=win32)(osgi.arch=x86))(&amp;(osgi.os=win32)(osgi.ws=win32)(osgi.arch=x86_64))(&amp;(osgi.os=macosx)(osgi.ws=cocoa)(osgi.arch=x86))(&amp;(osgi.os=macosx)(osgi.ws=cocoa(osgi.arch=x86_64))(&amp;(osgi.os=linux)(osgi.ws=gtk)(osgi.arch=x86))(&amp;(osgi.os=linux)(osgi.ws=gtk)(osgi.arch=x86_64))(&amp;(osgi.os=linux)(osgi.ws=gtk)(osgi.arch=ppc))(&amp;(osgi.os=linux(osgi.ws=gtk(osgi.arch=ppc64))(&amp;(osgi.os=aix)(osgi.ws=gtk)(osgi.arch=ppc))(&amp;(osgi.os=aix)(osgi.ws=gtk)(osgi.arch=ppc64))(&amp;(osgi.os=hpux)(osgi.ws=gtk)(osgi.arch=ia64))(&amp;(osgi.os=solaris)(osgi.ws=gtk(osgi.arch=sparc))(&amp;(osgi.os=solaris)(osgi.ws=gtk)(osgi.arch=x86))(&amp;(osgi.os=linux)(osgi.ws=gtk)(osgi.arch=s390))(&amp;(osgi.os=linux)(osgi.ws=gtk)(osgi.arch=s390x)))"
                 followOnlyFilteredRequirements="true" />
         </p2.mirror>
         <p2.remove.iu>
