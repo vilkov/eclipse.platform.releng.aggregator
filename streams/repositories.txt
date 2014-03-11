@@ -4,12 +4,12 @@ rt.equinox.framework: master
 rt.equinox.p2: master
 eclipse.jdt.core.binaries: master
 eclipse.jdt.core: master
-eclipse.jdt.debug: master
+eclipse.jdt.debug: BETA_JAVA8_LUNA
 eclipse.jdt: master
-eclipse.jdt.ui: master
+eclipse.jdt.ui: 
 eclipse.pde: master
 eclipse.pde.build: master
-eclipse.pde.ui: master
+eclipse.pde.ui: BETA_JAVA8_LUNA
 eclipse.platform.debug: master
 eclipse.platform.resources: master
 eclipse.platform: master
