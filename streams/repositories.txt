@@ -6,7 +6,7 @@ eclipse.jdt.core.binaries: master
 eclipse.jdt.core: BETA_JAVA8_LUNA
 eclipse.jdt.debug: BETA_JAVA8_LUNA
 eclipse.jdt: BETA_JAVA8_LUNA
-eclipse.jdt.ui: master
+eclipse.jdt.ui: BETA_JAVA8_LUNA
 eclipse.pde: master
 eclipse.pde.build: master
 eclipse.pde.ui: BETA_JAVA8_LUNA
