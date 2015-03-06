@@ -30,7 +30,7 @@ fi
 
 # In this branch, we first build a forked version of Tycho, 
 # with changes we assume will eventually be in Tycho itself.
-./buildTycho.sh
+${SCRIPT_PATH}/buildTycho.sh > "${logsDirectory}/buildTycho.out.txt"
 
 fn-maven-build-aggregator "$BUILD_ID" "$aggDir" "$LOCAL_REPO" $MVN_DEBUG $MVN_QUIET $SIGNING $MAVEN_BREE
 exitCode=$?
