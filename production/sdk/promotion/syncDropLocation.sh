@@ -110,7 +110,7 @@ function sendPromoteMail ()
   # for initial testing, only to me -- change as desired after initial testing.
   if [[ "${buildId}" =~ [PYX] ]]
   then
-    TO="david_williams@us.ibm.com"
+    TO="david_williams@us.ibm.com,pascal@rapicault.net"
   fi
 
   FROM=${FROM:-"e4Builder@eclipse.org"}
