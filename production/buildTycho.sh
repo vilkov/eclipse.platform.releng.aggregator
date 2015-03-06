@@ -19,7 +19,7 @@ git revert 2ab08b7a0079f277f52eacab3a9a4bbd0b112564 --no-edit
 # dw, removed: -Dtycho.localArtifacts=ignore
 mvn ${TYCHO_MVN_ARGS} clean install
 cd ..
-if [[ !-d org.eclipse.tycho.extras ]]
+if [[ ! -d org.eclipse.tycho.extras ]]
 then
   git clone git://git.eclipse.org/gitroot/tycho/org.eclipse.tycho.extras.git
 fi
