@@ -3,8 +3,8 @@
 LOCAL_REPO=${LOCAL_REPO:-${PWD}/localRepo}
 TYCHO_MVN_ARGS="-Dmaven.test.skip=true -Dmaven.repo.local=$LOCAL_REPO -Dtycho.localArtifacts=default"
 echo -e "\n\tTYCHO_MVN_ARGS: ${TYCHO_MVN_ARGS}\n"
-
-
+TYCHO_EXTRAS_MVN_ARGS="-Dmaven.repo.local=$LOCAL_REPO -Dtycho.localArtifacts=default"
+echo -e "\n\tTYCHO_EXTRAS_MVN_ARGS: ${TYCHO_EXTRAS_MVN_ARGS}\n"
 
 if [[ ! -d org.eclipse.tycho ]]
 then
@@ -25,4 +25,4 @@ then
 fi
 cd org.eclipse.tycho.extras
 git pull git://git.eclipse.org/gitroot/tycho/org.eclipse.tycho.extras.git
-mvn ${TYCHO_MVN_ARGS} clean install
+mvn ${TYCHO_EXTRAS_MVN_ARGS} clean install
