@@ -2,7 +2,7 @@
 
 LOCAL_REPO=${LOCAL_REPO:-${PWD}/localRepo}
 TYCHO_MVN_ARGS="-Dmaven.test.skip=true -Dmaven.repo.local=$LOCAL_REPO -Dtycho.localArtifacts=default"
-echo -e "\n\tTYCHO_MVN_ARGS\n"
+echo -e "\n\tTYCHO_MVN_ARGS: ${TYCHO_MVN_ARGS}\n"
 
 
 
