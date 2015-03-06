@@ -9,6 +9,10 @@ then
   echo "remove existing localRepo"
   rm -fr ${LOCAL_REPO}
 fi
+# Similar for SCRIPT_PATH, relevent here only if local, isolated 
+# build, else, it is defined elsewhere. 
+SCRIPT_PATH=${SCRIPT_PATH:-${PWD}}
+
 #-Dmaven.test.skip=true
 TYCHO_MVN_ARGS="-Dmaven.repo.local=$LOCAL_REPO -Dtycho.localArtifacts=ignore"
 echo -e "\n\tTYCHO_MVN_ARGS: ${TYCHO_MVN_ARGS}\n"
@@ -24,10 +28,12 @@ git clone git://git.eclipse.org/gitroot/tycho/org.eclipse.tycho.git
 
 cd org.eclipse.tycho
 #git pull git://git.eclipse.org/gitroot/tycho/org.eclipse.tycho
-.git/refs/changes/74/43274/1 && git checkout FETCH_HEAD
-git fetch git://git.eclipse.org/gitroot/tycho/org.eclipse.tycho
-.git/refs/changes/28/43328/1 && git cherry-pick FETCH_HEAD
-git revert 2ab08b7a0079f277f52eacab3a9a4bbd0b112564 --no-edit
+echo "Applying patches from ${SCRIPT_PATH}/patches"
+git am  < ${SCRIPT_PATH}/patches/0001-428889-Also-handle-root-features-in-the-PublishProdu.patch
+git am  < ${SCRIPT_PATH}/patches/0002-461517-Adopt-new-version-of-p2.patch
+git am  < ${SCRIPT_PATH}/patches/0003-461606-Always-force-.app-for-mac-root-folder.patch
+git am  < ${SCRIPT_PATH}/patches/0004-Revert-453446-Disable-fixSWT-workaround-for-SWT-3.10.patch
+
 mvn ${TYCHO_MVN_ARGS} clean install
 rc=$?
 if [ $rc == 0 ]

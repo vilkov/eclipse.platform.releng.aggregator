@@ -1,0 +1,29 @@
+From 4db6a4c8785e42acf41fa689793fe5953274432b Mon Sep 17 00:00:00 2001
+From: Pascal Rapicault <pascal@rapicorp.com>
+Date: Thu, 5 Mar 2015 22:02:23 -0500
+Subject: [PATCH 2/4] 461517 - Adopt new version of p2
+
+Bug 461517
+
+Change-Id: If5e18bc82e8094e1b6ec582fd618a8465a9a736b
+Signed-off-by: Pascal Rapicault <pascal@rapicorp.com>
+---
+ tycho-bundles/tycho-bundles-target/tycho-bundles-target.target | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/tycho-bundles/tycho-bundles-target/tycho-bundles-target.target b/tycho-bundles/tycho-bundles-target/tycho-bundles-target.target
+index 2f084d4..3fdbab7 100644
+--- a/tycho-bundles/tycho-bundles-target/tycho-bundles-target.target
++++ b/tycho-bundles/tycho-bundles-target/tycho-bundles-target.target
+@@ -13,7 +13,7 @@
+ <unit id="org.eclipse.ecf.filetransfer.httpclient4.feature.feature.group" version="0.0.0"/>
+ <unit id="org.eclipse.ecf.filetransfer.httpclient4.ssl.feature.feature.group" version="0.0.0"/>
+ <!-- this is a build towards Mars M6; TODO use milestone -->
+-<repository location="http://download.eclipse.org/eclipse/updates/4.5-N-builds/N20150216-2000"/>
++<repository location="http://download.eclipse.org/eclipse/updates/4.5-I-builds/I20150305-1200"/>
+ </location>
+ <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="slicer" includeSource="true" type="InstallableUnit">
+ <unit id="org.mockito" version="1.8.4.v201303031500"/>
+-- 
+1.9.1
+
