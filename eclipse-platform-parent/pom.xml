@@ -77,8 +77,9 @@
 
     <ecf-repo.url>http://download.eclipse.org/rt/ecf/3.9.2/site.p2/</ecf-repo.url>
 
+<!-- try removing, for Tycho patched builds
     <tycho-repo.url>https://oss.sonatype.org/content/repositories/public/</tycho-repo.url>
-
+ -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <cbi-jdt-repo.url>https://repo.eclipse.org/content/repositories/eclipse-staging/</cbi-jdt-repo.url>
     <cbi-jdt-version>3.11.0.v20150118-1315</cbi-jdt-version>
@@ -138,7 +139,7 @@
     </snapshotRepository>
   </distributionManagement>
   <pluginRepositories>
-   
+   <!-- removing to try for Tycho patched builds.
     <pluginRepository>
       <id>tycho</id>
       <url>${tycho-repo.url}</url>
@@ -149,6 +150,7 @@
         <enabled>true</enabled>
       </snapshots>
     </pluginRepository>
+     -->
     <pluginRepository>
       <id>cbi-jdt</id>
       <url>${cbi-jdt-repo.url}</url>
