@@ -54,7 +54,7 @@ export ANT_OPTS=${ANT_OPTS:-"-Dbuild.sysclasspath=ignore -Dincludeantruntime=fal
 # for other VMs or the VM might fail to start due to unrecognized -XX option.
 # Normally should not use -Declipse.p2.mirrors=false, especially on a regular basis.
 # -Dtycho.localArtifacts=ignore -- removed for "patched Tycho" build.
-export MAVEN_OPTS=${MAVEN_OPTS:--Xmx2560m -XX:MaxPermSize=256M -Djava.io.tmpdir=${TMP_DIR} }
+export MAVEN_OPTS=${MAVEN_OPTS:--Xmx2560m -XX:MaxPermSize=256M -Djava.io.tmpdir=${TMP_DIR} -Dtycho.localArtifacts=default}
 
 export MAVEN_PATH=${MAVEN_PATH:-/shared/common/apache-maven-3.1.1/bin}
 
