@@ -286,8 +286,7 @@ else
   echo "# " >> ${logsDirectory}/relengdirectory.txt
   popd
 
-
-  $SCRIPT_PATH/pom-version-updater.sh $BUILD_ENV_FILE 2>&1 | tee ${POM_VERSION_UPDATE_BUILD_LOG}
+  #$SCRIPT_PATH/pom-version-updater.sh $BUILD_ENV_FILE 2>&1 | tee ${POM_VERSION_UPDATE_BUILD_LOG}
   # if file exists, pom update failed
   if [[ -f "${buildDirectory}/buildFailed-pom-version-updater" ]]
   then
@@ -298,78 +297,78 @@ else
     fn-write-property BUILD_FAILED
   else
     # if updater failed, something fairly large is wrong, so no need to compile
-      $SCRIPT_PATH/run-maven-build.sh $BUILD_ENV_FILE 2>&1 | tee ${RUN_MAVEN_BUILD_LOG}
-      # if file exists, then run maven build failed.
-      if [[ -f "${buildDirectory}/buildFailed-run-maven-build" ]]
+    $SCRIPT_PATH/run-maven-build.sh $BUILD_ENV_FILE 2>&1 | tee ${RUN_MAVEN_BUILD_LOG}
+    # if file exists, then run maven build failed.
+    if [[ -f "${buildDirectory}/buildFailed-run-maven-build" ]]
+    then
+      buildrc=1
+      /bin/grep "\[ERROR\]" "${RUN_MAVEN_BUILD_LOG}" >> "${buildDirectory}/buildFailed-run-maven-build"
+      BUILD_FAILED=${RUN_MAVEN_BUILD_LOG}
+      fn-write-property BUILD_FAILED
+      # TODO: eventually put in more logic to "track" the failure, so
+      # proper actions and emails can be sent. For example, we'd still want to
+      # publish what we have, but not start the tests.
+      echo "BUILD FAILED. See ${RUN_MAVEN_BUILD_LOG}."
+    else
+      # if build run maven build failed, no need to gather parts
+      $SCRIPT_PATH/gather-parts.sh $BUILD_ENV_FILE 2>&1 | tee ${GATHER_PARTS_BUILD_LOG}
+      if [[ -f "${buildDirectory}/buildFailed-gather-parts" ]]
       then
         buildrc=1
-        /bin/grep "\[ERROR\]" "${RUN_MAVEN_BUILD_LOG}" >> "${buildDirectory}/buildFailed-run-maven-build"
-        BUILD_FAILED=${RUN_MAVEN_BUILD_LOG}
+        /bin/grep -i "ERROR" "${GATHER_PARTS_BUILD_LOG}" >> "${buildDirectory}/buildFailed-gather-parts"
+        BUILD_FAILED=${GATHER_PARTS_BUILD_LOG}
         fn-write-property BUILD_FAILED
-        # TODO: eventually put in more logic to "track" the failure, so
-        # proper actions and emails can be sent. For example, we'd still want to
-        # publish what we have, but not start the tests.
-        echo "BUILD FAILED. See ${RUN_MAVEN_BUILD_LOG}."
-      else
-        # if build run maven build failed, no need to gather parts
-        $SCRIPT_PATH/gather-parts.sh $BUILD_ENV_FILE 2>&1 | tee ${GATHER_PARTS_BUILD_LOG}
-        if [[ -f "${buildDirectory}/buildFailed-gather-parts" ]]
-        then
-          buildrc=1
-          /bin/grep -i "ERROR" "${GATHER_PARTS_BUILD_LOG}" >> "${buildDirectory}/buildFailed-gather-parts"
-          BUILD_FAILED=${GATHER_PARTS_BUILD_LOG}
-          fn-write-property BUILD_FAILED
-          echo "BUILD FAILED. See ${GATHER_PARTS_BUILD_LOG}."
-        fi
+        echo "BUILD FAILED. See ${GATHER_PARTS_BUILD_LOG}."
       fi
     fi
   fi
+fi
 
-  $SCRIPT_PATH/publish-eclipse.sh $BUILD_ENV_FILE >$logsDirectory/mb080_publish-eclipse_output.txt
-  checkForErrorExit $? "Error occurred during publish-eclipse"
+$SCRIPT_PATH/publish-eclipse.sh $BUILD_ENV_FILE >$logsDirectory/mb080_publish-eclipse_output.txt
+checkForErrorExit $? "Error occurred during publish-eclipse"
 
 
-  # We don't publish repo if there was a build failure, it likely doesn't exist.
+# We don't publish repo if there was a build failure, it likely doesn't exist.
+if [[ -z "${BUILD_FAILED}" ]]
+then
+  $SCRIPT_PATH/publish-repo.sh $BUILD_ENV_FILE >$logsDirectory/mb083_publish-repo_output.txt
+  checkForErrorExit $? "Error occurred during publish-repo"
+else
+  echo "No repo published, since BUILD_FAILED"
+fi
+
+#For now, only "publish equinox and promote" if N, I or M build, skip if P, X, or Y
+
+# TODO: probably never need to promote equinox, for patch build?
+# TODO: Unclear how/when to send mailing list notification for patch builds.
+
+if [[ $BUILD_TYPE =~  [NIM] ]]
+then
+
+  # We don't promote equinox if there was a build failure, and we should not even try to
+  # create the site locally, because it depends heavily on having a valid repository to
+  # work from.
   if [[ -z "${BUILD_FAILED}" ]]
   then
-    $SCRIPT_PATH/publish-repo.sh $BUILD_ENV_FILE >$logsDirectory/mb083_publish-repo_output.txt
-    checkForErrorExit $? "Error occurred during publish-repo"
-  else
-    echo "No repo published, since BUILD_FAILED"
+    $SCRIPT_PATH/publish-equinox.sh $BUILD_ENV_FILE >$logsDirectory/mb085_publish-equinox_output.txt
+    checkForErrorExit $? "Error occurred during publish-equinox"
   fi
+fi
 
-  #For now, only "publish equinox and promote" if N, I or M build, skip if P, X, or Y
+# if all ended well, put "promotion scripts" in known locations
+$SCRIPT_PATH/promote-build.sh $BUILD_ENV_FILE 2>&1 | tee $logsDirectory/mb090_promote-build_output.txt
+checkForErrorExit $? "Error occurred during promote-build"
 
-  # TODO: probably never need to promote equinox, for patch build?
-  # TODO: Unclear how/when to send mailing list notification for patch builds.
+# check for dirt in working tree. Note. we want near very end, since even things
+# like "publishing" in theory could leave dirt behind.
+$SCRIPT_PATH/dirtReport.sh $BUILD_ENV_FILE >$logsDirectory/dirtReport.txt
+checkForErrorExit $? "Error occurred during dirt report"
 
-  if [[ $BUILD_TYPE =~  [NIM] ]]
-  then
+fn-write-property-close
 
-    # We don't promote equinox if there was a build failure, and we should not even try to
-    # create the site locally, because it depends heavily on having a valid repository to
-    # work from.
-    if [[ -z "${BUILD_FAILED}" ]]
-    then
-      $SCRIPT_PATH/publish-equinox.sh $BUILD_ENV_FILE >$logsDirectory/mb085_publish-equinox_output.txt
-      checkForErrorExit $? "Error occurred during publish-equinox"
-    fi
-  fi
+# dump ALL environment variables in case its helpful in documenting or
+# debugging build results or differences between runs, especially on different machines
+env 1>$logsDirectory/mb100_all-env-variables_output.txt
 
-  # if all ended well, put "promotion scripts" in known locations
-  $SCRIPT_PATH/promote-build.sh $BUILD_ENV_FILE 2>&1 | tee $logsDirectory/mb090_promote-build_output.txt
-  checkForErrorExit $? "Error occurred during promote-build"
-
-  # check for dirt in working tree. Note. we want near very end, since even things
-  # like "publishing" in theory could leave dirt behind.
-  $SCRIPT_PATH/dirtReport.sh $BUILD_ENV_FILE >$logsDirectory/dirtReport.txt
-  checkForErrorExit $? "Error occurred during dirt report"
-
-  fn-write-property-close
-
-  # dump ALL environment variables in case its helpful in documenting or
-  # debugging build results or differences between runs, especially on different machines
-  env 1>$logsDirectory/mb100_all-env-variables_output.txt
-
-  echo "Exiting build with RC code of $buildrc"
-  exit $buildrc
+echo "Exiting build with RC code of $buildrc"
+exit $buildrc
