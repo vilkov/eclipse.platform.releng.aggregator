@@ -57,7 +57,7 @@ export ANT_OPTS=${ANT_OPTS:-"-Dbuild.sysclasspath=ignore -Dincludeantruntime=fal
 # -XX:MaxPermSize=256M 
 export MAVEN_OPTS=${MAVEN_OPTS:--Xmx2560m -Djava.io.tmpdir=${TMP_DIR} -Dtycho.localArtifacts=ignore}
 
-export MAVEN_PATH=${MAVEN_PATH:-/shared/common/apache-maven-3.1.1/bin}
+export MAVEN_PATH=${MAVEN_PATH:-/shared/common/apache-maven-3.2.5/bin}
 
 export PATH=$JAVA_HOME/bin:$MAVEN_PATH:$ANT_HOME/bin:$PATH
 
