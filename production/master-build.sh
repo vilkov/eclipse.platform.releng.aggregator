@@ -297,7 +297,7 @@ else
     BUILD_FAILED=${POM_VERSION_UPDATE_BUILD_LOG}
     fn-write-property BUILD_FAILED
   else
-    if updater failed, something fairly large is wrong, so no need to compile
+    # if updater failed, something fairly large is wrong, so no need to compile
       $SCRIPT_PATH/run-maven-build.sh $BUILD_ENV_FILE 2>&1 | tee ${RUN_MAVEN_BUILD_LOG}
       # if file exists, then run maven build failed.
       if [[ -f "${buildDirectory}/buildFailed-run-maven-build" ]]
