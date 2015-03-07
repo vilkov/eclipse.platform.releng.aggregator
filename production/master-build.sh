@@ -286,7 +286,15 @@ else
   echo "# " >> ${logsDirectory}/relengdirectory.txt
   popd
 
-  #$SCRIPT_PATH/pom-version-updater.sh $BUILD_ENV_FILE 2>&1 | tee ${POM_VERSION_UPDATE_BUILD_LOG}
+
+
+  # In this branch, we first build a forked version of Tycho, 
+  # with changes we assume will eventually be in Tycho itself.
+  ${SCRIPT_PATH}/buildTycho.sh  2>"${logsDirectory}/buildTycho.err.txt" 1>"${logsDirectory}/buildTycho.out.txt"
+
+
+
+  $SCRIPT_PATH/pom-version-updater.sh $BUILD_ENV_FILE 2>&1 | tee ${POM_VERSION_UPDATE_BUILD_LOG}
   # if file exists, pom update failed
   if [[ -f "${buildDirectory}/buildFailed-pom-version-updater" ]]
   then

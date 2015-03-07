@@ -28,10 +28,6 @@ if [ -z "$BUILD_ID" ]; then
   BUILD_ID=$(fn-build-id "$BUILD_TYPE" )
 fi
 
-# In this branch, we first build a forked version of Tycho, 
-# with changes we assume will eventually be in Tycho itself.
-${SCRIPT_PATH}/buildTycho.sh  2>"${logsDirectory}/buildTycho.err.txt" 1>"${logsDirectory}/buildTycho.out.txt"
-
 fn-maven-build-aggregator "$BUILD_ID" "$aggDir" "$LOCAL_REPO" $MVN_DEBUG $MVN_QUIET $SIGNING $MAVEN_BREE
 exitCode=$?
 
