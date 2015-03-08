@@ -145,7 +145,7 @@
         <enabled>true</enabled>
       </releases>
       <snapshots>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
       </snapshots>
     </pluginRepository>
     <pluginRepository>
@@ -357,9 +357,13 @@
               <args>-encoding</args>
               <args>${project.build.sourceEncoding}</args>
               <args>-proceedOnError</args>
+              <!-- 
               <args>-log</args>
               <args>${project.build.directory}/@dot.xml</args>
+              -->
             </compilerArgs>
+            <log>xml</log>
+            <logDirectory>${project.build.directory}/compilelogs</logDirectory>
             <showWarnings>true</showWarnings>
             <excludeResources>
               <exclude>**/package.html</exclude>

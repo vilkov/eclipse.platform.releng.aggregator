@@ -102,7 +102,8 @@ export BUILD_ENV_FILE=${buildDirectory}/buildproperties.shsource
 export BUILD_ENV_FILE_PHP=${buildDirectory}/buildproperties.php
 export BUILD_ENV_FILE_PROP=${buildDirectory}/buildproperties.properties
 
-export LOCAL_REPO="${BUILD_ROOT}"/localMavenRepo
+#export LOCAL_REPO="${BUILD_ROOT}/localMavenRepo"
+export LOCAL_REPO="${HOME}/.m2/repository"
 
 # In production builds, we normally specify CLEAN_LOCAL,
 # and remove any existing LOCAL_REPO, and re-fetch.
@@ -294,7 +295,7 @@ else
 
 
 
-  $SCRIPT_PATH/pom-version-updater.sh $BUILD_ENV_FILE 2>&1 | tee ${POM_VERSION_UPDATE_BUILD_LOG}
+  #$SCRIPT_PATH/pom-version-updater.sh $BUILD_ENV_FILE 2>&1 | tee ${POM_VERSION_UPDATE_BUILD_LOG}
   # if file exists, pom update failed
   if [[ -f "${buildDirectory}/buildFailed-pom-version-updater" ]]
   then

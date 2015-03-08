@@ -264,7 +264,7 @@ index f7da489..071246b 100644
 -     * @see #resolveReference(String, String, String)
 +     * Same as {@link #resolveArtifact(String, String, String)} but returning the result as
 +     * {@link IInstallableUnit}.
-+     * 
++     *
 +     * Note: "artifact" in "resolveArtifact" refers to a Tycho artifact, which technically represent
 +     * a p2 installable unit and optionally the associated p2 artifact.
       */

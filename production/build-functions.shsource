@@ -384,7 +384,7 @@ fn-maven-build-aggregator ()
     -DskipTests=true \
     -Dmaven.repo.local=$LOCAL_REPO  $CBI_JDT_REPO_URL_ARG $CBI_JDT_VERSION_ARG \
     -Dtycho.debug.artifactcomparator \
-    -DcontinueOnFail=true -Djgit.dirtyWorkingTree=error \
+    -DcontinueOnFail=true -Djgit.dirtyWorkingTree=warning \
     -DbuildTimestamp="${TIMESTAMP}" -DbuildType="${BUILD_TYPE}"  -DbuildId="${BUILD_ID}"  ${FORCEQUALIFIERARG} ${JAVA_DOC_TOOL}
   rc=$?
   popd
@@ -851,33 +851,36 @@ fn-gather-compile-logs ()
   BUILD_DIR="$1"; shift
   if [[ -d "$REPO_DIR" ]]
   then
-    mkdir -p "$BUILD_DIR"/compilelogs/plugins
+    COLLECTED_LOGS_DIR="${BUILD_DIR}/compilelogs/plugins"
+    mkdir -p "${COLLECTED_LOGS_DIR}"
     pushd "$REPO_DIR"
-    for dot in $( find * -name "@dot.xml" ); do
-      targetDir=$( dirname "$dot" )
-      echo "Processing $dot in $targetDir"
+    # The directory 'compilelogs' is used when we generate the logs. See parent pom for compilerArgs.
+    for log in $( find . -name "compilelogs" -type d ); do
+      targetDir=$( dirname "$log" )
+      echo -e "\tProcessing \n\t$log\n\tin\n\t$targetDir"
       if [ ! -r "$targetDir"/MANIFEST.MF ]; then
-        echo "**Failed to process $dot in $targetDir. Likely compile error. Will try source MANIFEST.MF in directory containing target."
+        echo -e "\n\t** Failed to process\n\t$log in \n\t$targetDir. \n\tLikely compile error? Will backup to source MANIFEST.MF in directory containing target."
         targetDir=$( dirname "${targetDir}" )
         if [ ! -r "$targetDir"/META-INF/MANIFEST.MF ]
         then
-          echo "**Failed to process $dot in $targetDir."
+          echo "**Failed to process $log in $targetDir."
         else
           BUNDLE_ID=$( grep Bundle-SymbolicName "$targetDir"/META-INF/MANIFEST.MF | cut -f2 -d" " |  cut -f1 -d\; | tr -d '\f\r\n\t' )
           BUNDLE_VERSION=$(  grep Bundle-Version "$targetDir"/META-INF/MANIFEST.MF | cut -f2 -d" " | tr -d '\f\r\n\t' )
-          mkdir "$BUILD_DIR"/compilelogs/plugins/${BUNDLE_ID}_${BUNDLE_VERSION}
-          cp "$dot" "$BUILD_DIR"/compilelogs/plugins/${BUNDLE_ID}_${BUNDLE_VERSION}
+          mkdir "${COLLECTED_LOGS_DIR}/${BUNDLE_ID}_${BUNDLE_VERSION}"
+          cp -r "$log/*" "${COLLECTED_LOGS_DIR}/${BUNDLE_ID}_${BUNDLE_VERSION}/"
         fi
       else
         BUNDLE_ID=$( grep Bundle-SymbolicName "$targetDir"/MANIFEST.MF | cut -f2 -d" " |  cut -f1 -d\; | tr -d '\f\r\n\t' )
         BUNDLE_VERSION=$(  grep Bundle-Version "$targetDir"/MANIFEST.MF | cut -f2 -d" " | tr -d '\f\r\n\t' )
-        mkdir "$BUILD_DIR"/compilelogs/plugins/${BUNDLE_ID}_${BUNDLE_VERSION}
-        cp "$dot" "$BUILD_DIR"/compilelogs/plugins/${BUNDLE_ID}_${BUNDLE_VERSION}
+        mkdir "${COLLECTED_LOGS_DIR}/${BUNDLE_ID}_${BUNDLE_VERSION}"
+        # All logs should be directly under $log, but ... will specify -r in case not.
+        cp -r "$log/*" "${COLLECTED_LOGS_DIR}/${BUNDLE_ID}_${BUNDLE_VERSION}/"
       fi
     done
     popd
   else
-    echo "   ERROR: $REPO_DIR did not exist in fn-gather-compile-logs"
+    echo "[ERROR] $REPO_DIR did not exist in fn-gather-compile-logs"
   fi
 }
 

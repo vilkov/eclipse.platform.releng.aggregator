@@ -18,17 +18,39 @@
 
         <condition
             property="TMP"
-            value="${env.TMP_DIR}"
-            else="/tmp">
+      value="${env.TMP_DIR}">
             <isset property="env.TMP_DIR" />
         </condition>
+    <condition
+      property="TMP"
+      value="${TMP_DIR}">
+      <isset property="TMP_DIR" />
+
+    </condition>
+    <condition
+      property="TMP"
+      value="${env.BUILD_ROOT}/tmp">
+      <isset property="${env.BUILD_ROOT}" />
+
+    </condition>
+    <condition
+      property="TMP"
+      value="${BUILD_ROOT}/tmp">
+      <isset property="${BUILD_ROOT}" />
+    </condition>
+    <fail
+      unless="TMP"
+      message="TMP not defined, since TMP_DIR nor BUILD_ROOT was defined" />
         <echo message="TMP: ${TMP}" />
 
-        <condition property="downloadHost" value="${env.DOWNLOAD_HOST}" else="archive.eclipse.org" >
+    <condition
+      property="downloadHost"
+      value="${env.DOWNLOAD_HOST}"
+      else="archive.eclipse.org">
           <isset property="env.DOWNLOAD_HOST"/>
         </condition>
         <!--
-            TODO: need make platform independendent, as in test.xml, to compute right one.
+            TODO: need make platform independent, as in test.xml, to compute right one.
             (and, pass in?)
             (and make "version" variable)
         -->
@@ -194,7 +216,8 @@
             </fileset>
         </move>
 
-        <echo message="platform and tools installed, platformURL: ${platformURL} platform: ${platformFile}, fetched using tychoeclipsebuilder/getBaseBuilderAndTools.xml" />
+    <echo
+      message="platform and tools installed, platformURL: ${platformURL} platform: ${platformFile}, fetched using tychoeclipsebuilder/getBaseBuilderAndTools.xml" />
     </target>
 
 </project>
