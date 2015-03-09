@@ -855,7 +855,7 @@ fn-gather-compile-logs ()
     mkdir -p "${COLLECTED_LOGS_DIR}"
     pushd "$REPO_DIR"
     # The directory 'compilelogs' is used when we generate the logs. See parent pom for compilerArgs.
-    for log in $( find . -name "compilelogs" -type d ); do
+    for log in $( find "${REPO_DIR}" -name "compilelogs" -type d ); do
       targetDir=$( dirname "$log" )
       echo -e "\tProcessing \n\t$log\n\tin\n\t$targetDir"
       if [ ! -r "$targetDir"/MANIFEST.MF ]; then
