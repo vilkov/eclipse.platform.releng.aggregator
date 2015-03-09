@@ -868,14 +868,14 @@ fn-gather-compile-logs ()
           BUNDLE_ID=$( grep Bundle-SymbolicName "$targetDir"/META-INF/MANIFEST.MF | cut -f2 -d" " |  cut -f1 -d\; | tr -d '\f\r\n\t' )
           BUNDLE_VERSION=$(  grep Bundle-Version "$targetDir"/META-INF/MANIFEST.MF | cut -f2 -d" " | tr -d '\f\r\n\t' )
           mkdir "${COLLECTED_LOGS_DIR}/${BUNDLE_ID}_${BUNDLE_VERSION}"
-          cp -r "$log/*" "${COLLECTED_LOGS_DIR}/${BUNDLE_ID}_${BUNDLE_VERSION}/"
+          cp -r "${REPO_DIR}/${log}/*" "${COLLECTED_LOGS_DIR}/${BUNDLE_ID}_${BUNDLE_VERSION}/"
         fi
       else
         BUNDLE_ID=$( grep Bundle-SymbolicName "$targetDir"/MANIFEST.MF | cut -f2 -d" " |  cut -f1 -d\; | tr -d '\f\r\n\t' )
         BUNDLE_VERSION=$(  grep Bundle-Version "$targetDir"/MANIFEST.MF | cut -f2 -d" " | tr -d '\f\r\n\t' )
         mkdir "${COLLECTED_LOGS_DIR}/${BUNDLE_ID}_${BUNDLE_VERSION}"
         # All logs should be directly under $log, but ... will specify -r in case not.
-        cp -r "$log/*" "${COLLECTED_LOGS_DIR}/${BUNDLE_ID}_${BUNDLE_VERSION}/"
+        cp -r "${REPO_DIR}/${log}/*" "${COLLECTED_LOGS_DIR}/${BUNDLE_ID}_${BUNDLE_VERSION}/"
       fi
     done
     popd
