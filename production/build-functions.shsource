@@ -1062,7 +1062,7 @@ fn-publish-eclipse ()
     -Djava.io.tmpdir=$TMP_DIR \
     publish
   # hide experimental builds, for now
-  if [[ $BUILD_ID =~ [PXY] ]]
+  if [[ $BUILD_ID =~ [PY] ]]
   then
     touch buildHidden
   fi
