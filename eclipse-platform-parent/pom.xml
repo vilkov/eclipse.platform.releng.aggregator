@@ -78,8 +78,8 @@
     <ecf-repo.url>http://download.eclipse.org/rt/ecf/3.9.2/site.p2/</ecf-repo.url>
 
     <!-- using snapshot version for bug 461207 -->
-    <tycho-repo.url>https://repo.eclipse.org/content/repositories/tycho-snapshots/</tycho-repo.url>
-    <!-- <tycho-repo.url>https://oss.sonatype.org/content/repositories/public/</tycho-repo.url>  -->
+    <tycho-snapshot-repo.url>https://repo.eclipse.org/content/repositories/tycho-snapshots/</tycho-snapshot-repo.url>
+    <tycho-repo.url>https://oss.sonatype.org/content/repositories/public/</tycho-repo.url>
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <cbi-jdt-repo.url>https://repo.eclipse.org/content/repositories/eclipse-staging/</cbi-jdt-repo.url>
@@ -140,6 +140,18 @@
     </snapshotRepository>
   </distributionManagement>
   <pluginRepositories>
+
+    <pluginRepository>
+      <id>tycho-snapshots</id>
+      <url>${tycho-snapshot-repo.url}</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </pluginRepository>
+
     <pluginRepository>
       <id>tycho</id>
       <url>${tycho-repo.url}</url>
