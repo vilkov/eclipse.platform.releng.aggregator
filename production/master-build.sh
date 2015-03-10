@@ -102,8 +102,8 @@ export BUILD_ENV_FILE=${buildDirectory}/buildproperties.shsource
 export BUILD_ENV_FILE_PHP=${buildDirectory}/buildproperties.php
 export BUILD_ENV_FILE_PROP=${buildDirectory}/buildproperties.properties
 
-export LOCAL_REPO="${BUILD_ROOT}/localMavenRepo"
-#export LOCAL_REPO="${HOME}/.m2/repository"
+#export LOCAL_REPO="${BUILD_ROOT}/localMavenRepo"
+export LOCAL_REPO="${HOME}/.m2/repository"
 
 # In production builds, we normally specify CLEAN_LOCAL,
 # and remove any existing LOCAL_REPO, and re-fetch.
