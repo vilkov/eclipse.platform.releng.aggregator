@@ -288,8 +288,8 @@ else
   popd
 
 
-  ${SCRIPT_PATH}/buildTycho.sh  2>"${logsDirectory}/swtfix.err.txt" 1>"${logsDirectory}/swtfix.out.txt"
-
+# ${SCRIPT_PATH}/buildTycho.sh  2>"${logsDirectory}/swtfix.err.txt" 1>"${logsDirectory}/swtfix.out.txt"
+${SCRIPT_PATH}/patchSWT.sh
 
   #$SCRIPT_PATH/pom-version-updater.sh $BUILD_ENV_FILE 2>&1 | tee ${POM_VERSION_UPDATE_BUILD_LOG}
   # if file exists, pom update failed
