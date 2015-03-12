@@ -332,7 +332,7 @@ fn-maven-build-aggregator ()
 
   MARGS="-DbuildId=$BUILD_ID"
   if $DEBUG; then
-    MARGS="$MARGS -X e"
+    MARGS="$MARGS -X -e"
   fi
   if $QUIET; then
     MARGS="$MARGS -q"
