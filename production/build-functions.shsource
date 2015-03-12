@@ -332,7 +332,7 @@ fn-maven-build-aggregator ()
 
   MARGS="-DbuildId=$BUILD_ID"
   if $DEBUG; then
-    MARGS="$MARGS -X"
+    MARGS="$MARGS -X e"
   fi
   if $QUIET; then
     MARGS="$MARGS -q"
@@ -379,7 +379,7 @@ fn-maven-build-aggregator ()
   #mvn $MARGS --fail-never -V \
     #mvn $MARGS --fail-at-end -V \
     #mvn $MARGS  -V \
-    mvn $MARGS --fail-at-end -V  ${ALT_POM_FILE} \
+    mvn $MARGS --fail-fast -V  ${ALT_POM_FILE} \
     clean verify \
     -DskipTests=true \
     -Dmaven.repo.local=$LOCAL_REPO  $CBI_JDT_REPO_URL_ARG $CBI_JDT_VERSION_ARG \
