@@ -5,9 +5,11 @@
 # which does this definition and removal before this point).
 if [[ -z "${LOCAL_REPO}" ]]
 then
-  LOCAL_REPO=${LOCAL_REPO:-${PWD}/localRepo}
-  echo "remove existing localRepo"
-  rm -fr ${LOCAL_REPO}
+  echo "LOCAL_REPO not defined as required"
+  exit 1
+  #LOCAL_REPO=${LOCAL_REPO:-${PWD}/localRepo}
+  #echo "remove existing localRepo"
+  #rm -fr ${LOCAL_REPO}
 fi
 # Similar for SCRIPT_PATH, relevent here only if local, isolated 
 # build, else, it is defined elsewhere. 
@@ -25,7 +27,7 @@ then
   rm -fr org.eclipse.tycho
 fi
 git clone git://git.eclipse.org/gitroot/tycho/org.eclipse.tycho.git --quiet
-
+echo "Tycho Patch"
 cd org.eclipse.tycho
 #git pull git://git.eclipse.org/gitroot/tycho/org.eclipse.tycho
 #echo "Applying patches from ${SCRIPT_PATH}/patches"
@@ -33,6 +35,7 @@ cd org.eclipse.tycho
 #git am  < ${SCRIPT_PATH}/patches/0002-461517-Adopt-new-version-of-p2.patch
 #git am  < ${SCRIPT_PATH}/patches/0003-461606-Always-force-.app-for-mac-root-folder.patch
 
+patch -p0 < ${SCRIPT_PATH}/patches/zipPatchFile.patch
 
 mvn -X -e clean install ${TYCHO_MVN_ARGS}
 rc=$?

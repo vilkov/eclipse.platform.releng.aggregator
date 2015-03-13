@@ -287,10 +287,24 @@ else
   echo "# " >> ${logsDirectory}/relengdirectory.txt
   popd
 
-
-#${SCRIPT_PATH}/buildTycho.sh  2>&1 | tee ${logsDirectory}/tycho23.log.txt
+echo "About to patch Tycho. LOCAL_REPO: ${LOCAL_REP}"
+${SCRIPT_PATH}/buildTycho.sh  2>&1 | tee ${logsDirectory}/tycho23.log.txt
+rc=$?
+echo "buildTycho returned $?"
+if [[ $rc != 0 ]]
+then
+  echo "[ERROR] buildTycho.sh returned error code: $rc"
+  exit $rc
+fi
+echo "About to patchSWT"
 ${SCRIPT_PATH}/patchSWT.sh
-
+rc=$?
+echo "patchSWT returned $rc"
+if [[ $rc != 0 ]]
+then
+  echo "[ERROR] patchSWT returned error code: $rc"
+  exit $rc
+fi
   #$SCRIPT_PATH/pom-version-updater.sh $BUILD_ENV_FILE 2>&1 | tee ${POM_VERSION_UPDATE_BUILD_LOG}
   # if file exists, pom update failed
   if [[ -f "${buildDirectory}/buildFailed-pom-version-updater" ]]
