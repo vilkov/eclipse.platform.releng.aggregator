@@ -476,7 +476,7 @@ fn-pom-version-updater ()
 
   MARGS=""
   if $DEBUG; then
-    MARGS="$MARGS -X"
+    MARGS="$MARGS -X -e"
   fi
   if $QUIET; then
     MARGS="$MARGS -q"
