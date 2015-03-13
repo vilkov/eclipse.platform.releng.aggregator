@@ -34,8 +34,8 @@ cd org.eclipse.tycho
 #git am  < ${SCRIPT_PATH}/patches/0001-428889-Also-handle-root-features-in-the-PublishProdu.patch
 #git am  < ${SCRIPT_PATH}/patches/0002-461517-Adopt-new-version-of-p2.patch
 #git am  < ${SCRIPT_PATH}/patches/0003-461606-Always-force-.app-for-mac-root-folder.patch
+git am < ${SCRIPT_PATH}/patches/0001-only-add-zip-if-IU-packaging-type.patch
 
-patch -p0 < ${SCRIPT_PATH}/patches/zipPatchFile.patch
 
 mvn -X -e clean install ${TYCHO_MVN_ARGS}
 rc=$?
