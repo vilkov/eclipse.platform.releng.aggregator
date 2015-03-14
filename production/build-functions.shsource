@@ -375,9 +375,10 @@ fn-maven-build-aggregator ()
   pushd "$REPO_DIR"
     # lock-snapshots, if not obvious, should only be run occasionally, once ready to "stabilize"
     # mvn versions:lock-snapshots -Dmaven.repo.local=$LOCAL_REPO -Dincludes=org.eclipse.tycho*  >${logsDirectory}/lock-snapshots.txt
-    mvn versions:display-plugin-updates -Dmaven.repo.local=$LOCAL_REPO > ${logsDirectory}/display-plugin-updates.txt
-    mvn versions:display-dependency-updates -Dmaven.repo.local=$LOCAL_REPO > ${logsDirectory}/display-dependency-updates.txt
-    mvn versions:display-property-updates -Dmaven.repo.local=$LOCAL_REPO > ${logsDirectory}/display-property-updates.txt
+    # mvn versions:display-plugin-updates -Dmaven.repo.local=$LOCAL_REPO > ${logsDirectory}/display-plugin-updates.txt
+    # 'dependency updates' not useful for Tycho, since its "dependencies" are via p2.
+    # mvn versions:display-dependency-updates -Dmaven.repo.local=$LOCAL_REPO > ${logsDirectory}/display-dependency-updates.txt
+    # mvn versions:display-property-updates -Dmaven.repo.local=$LOCAL_REPO > ${logsDirectory}/display-property-updates.txt
     mvn $MARGS --fail-fast -V  ${ALT_POM_FILE} \
     clean verify \
     -DskipTests=true \
