@@ -1,25 +1,18 @@
 #!/usr/bin/env bash
 
-# This definition of localRepo only matters for testing locally,
-# when building only Tycho (not Eclipse Platform with patched version,
-# which does this definition and removal before this point).
+# Small, temp utility to patch and build Tycho
+
 if [[ -z "${LOCAL_REPO}" ]]
 then
   echo "LOCAL_REPO not defined as required"
   exit 1
-  #LOCAL_REPO=${LOCAL_REPO:-${PWD}/localRepo}
-  #echo "remove existing localRepo"
-  #rm -fr ${LOCAL_REPO}
 fi
-# Similar for SCRIPT_PATH, relevent here only if local, isolated 
+# Similar for SCRIPT_PATH, relevant here only if local, isolated 
 # build, else, it is defined elsewhere. 
 SCRIPT_PATH=${SCRIPT_PATH:-${PWD}}
 
-#-Dmaven.test.skip=true -DskipTests=true
-TYCHO_MVN_ARGS="-Dmaven.repo.local=$LOCAL_REPO -Dtycho.localArtifacts=ignore -DlocalRepositoryPath=$LOCAL_REPO"
+TYCHO_MVN_ARGS="-Dmaven.repo.local=$LOCAL_REPO -Dtycho.localArtifacts=ignore"
 echo -e "\n\tTYCHO_MVN_ARGS: ${TYCHO_MVN_ARGS}\n"
-TYCHO_EXTRAS_MVN_ARGS="-Dmaven.repo.local=$LOCAL_REPO -Dtycho.localArtifacts=ignore -DlocalRepositoryPath=$LOCAL_REPO"
-echo -e "\n\tTYCHO_EXTRAS_MVN_ARGS: ${TYCHO_EXTRAS_MVN_ARGS}\n"
 
 if [[ -d org.eclipse.tycho ]]
 then
@@ -28,34 +21,37 @@ then
 fi
 git clone git://git.eclipse.org/gitroot/tycho/org.eclipse.tycho.git --quiet
 echo "Tycho Patch"
-cd org.eclipse.tycho
-#git pull git://git.eclipse.org/gitroot/tycho/org.eclipse.tycho
-#echo "Applying patches from ${SCRIPT_PATH}/patches"
-#git am  < ${SCRIPT_PATH}/patches/0001-428889-Also-handle-root-features-in-the-PublishProdu.patch
-#git am  < ${SCRIPT_PATH}/patches/0002-461517-Adopt-new-version-of-p2.patch
-#git am  < ${SCRIPT_PATH}/patches/0003-461606-Always-force-.app-for-mac-root-folder.patch
-git am < ${SCRIPT_PATH}/patches/0001-only-add-zip-if-IU-packaging-type.patch
-
+pushd org.eclipse.tycho
+git am --ignore-space-change <${SCRIPT_PATH}/patches/0927-Pascal-s-commit-not-mine-for-bug-461872-.-created-th.patch
+rc=$?
+if [ $rc != 0 ]
+then
+  echo "Tycho Patch did not apply? git am return code: $rc"
+  popd
+  exit $rc
+fi
 
 mvn -X -e clean install ${TYCHO_MVN_ARGS}
 rc=$?
+popd
 if [ $rc == 0 ]
 then
-  cd ..
   if [[ -d org.eclipse.tycho.extras ]]
   then
     echo "Removing existing directory: org.eclipse.tycho.extras"
     rm -fr org.eclipse.tycho.extras
   fi
   git clone git://git.eclipse.org/gitroot/tycho/org.eclipse.tycho.extras.git --quiet
-  cd org.eclipse.tycho.extras
-  #git pull git://git.eclipse.org/gitroot/tycho/org.eclipse.tycho.extras.git
-  mvn -X -e clean install ${TYCHO_EXTRAS_MVN_ARGS}
+  pushd org.eclipse.tycho.extras
+  mvn -X -e clean install ${TYCHO_MVN_ARGS}
   rc=$?
   if [ $rc != 0 ]
   then
     echo -e "\n\t[ERROR] Tycho Extras build failed. mvn returned $rc\n"
+    exit $rc
   fi
 else
   echo -e "\n\t[ERROR] Tycho Build failed. mvn returned $rc\n"
+  exit $rc
 fi
+popd

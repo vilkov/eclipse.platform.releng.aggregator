@@ -287,7 +287,7 @@ else
   echo "# " >> ${logsDirectory}/relengdirectory.txt
   popd
 
-  echo "About to patch Tycho. LOCAL_REPO: ${LOCAL_REP}"
+  echo "About to patch Tycho. LOCAL_REPO: ${LOCAL_REPO}"
   ${SCRIPT_PATH}/buildTycho.sh  2>&1 | tee ${logsDirectory}/tycho23.log.txt
   rc=$?
   echo "buildTycho returned $?"
