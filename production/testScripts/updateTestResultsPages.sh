@@ -102,7 +102,6 @@ then
 fi
 
 
-
 JAVA_7_HOME=${JAVA_7_HOME:-/shared/common/jdk1.7.0-latest}
 JAVA_8_HOME=${JAVA_8_HOME:-/shared/common/jdk1.8.0_x64-latest}
 

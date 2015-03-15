@@ -21,6 +21,14 @@
   <artifactId>eclipse-platform-parent</artifactId>
   <version>4.5.0-SNAPSHOT</version>
   <packaging>pom</packaging>
+  <!--
+     See maven-enforcer-plugin configuration to actually break the build if
+     run with older maven.
+     prerequisites section is kept for now as even if it doesn't break the build, it
+     is used by other plugins like versions-maven-plugin which check and warn
+     for using plugins with older than they require Maven version.
+     If version number changed in one place, be sure to change in the other.
+  -->
   <prerequisites>
     <maven>3.1.1</maven>
   </prerequisites>
@@ -77,17 +85,18 @@
 
     <ecf-repo.url>http://download.eclipse.org/rt/ecf/3.9.2/site.p2/</ecf-repo.url>
 
-    <!-- using snapshot version for bug 461207 -->
+    <!-- using snapshot repo for Tycho 0.23.0-SNAPSHOT, such as for bug 461207 -->
+    <!-- Does it hurt to always leave snapshot repo here? Even if not used? -->
     <tycho-snapshot-repo.url>https://repo.eclipse.org/content/repositories/tycho-snapshots/</tycho-snapshot-repo.url>
-    <tycho-repo.url>https://oss.sonatype.org/content/repositories/public/</tycho-repo.url>
+     <tycho-repo.url>https://oss.sonatype.org/content/repositories/public/</tycho-repo.url>
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <cbi-jdt-repo.url>https://repo.eclipse.org/content/repositories/eclipse-staging/</cbi-jdt-repo.url>
     <cbi-jdt-version>3.11.0.v20150118-1315</cbi-jdt-version>
-    
-    <!-- 
-        This jetty-version is used by the help system in building the JSPs, 
-        and should change when ever our "shipped" version of Jetty changes. 
+
+    <!--
+        This jetty-version is used by the help system in building the JSPs,
+        and should change when ever our "shipped" version of Jetty changes.
      -->
     <jetty-version>9.2.5.v20141112</jetty-version>
 
@@ -337,7 +346,34 @@
           </execution>
         </executions>
       </plugin>
-
+      <plugin>
+        <!--
+           This maven-enforcer-plugin configuration to actually break the build if
+           run with older maven.
+           prerequisites section is kept for now as even if it doesn't break the build, it
+           is used by other plugins like versions-maven-plugin which check and warn
+           for using plugins with older than they require Maven version.
+           If version number changed in one place, be sure to change in the other.
+        -->
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <version>1.4</version>
+        <executions>
+          <execution>
+            <id>enforce-maven</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <requireMavenVersion>
+                  <version>3.1.1</version>
+                </requireMavenVersion>
+              </rules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
     <pluginManagement>
       <plugins>
@@ -371,13 +407,15 @@
               <args>-encoding</args>
               <args>${project.build.sourceEncoding}</args>
               <args>-proceedOnError</args>
-              <!-- 
+              <!-- Use this form, for Tycho 22 or less. -->
               <args>-log</args>
               <args>${project.build.directory}/@dot.xml</args>
-              -->
+
             </compilerArgs>
+            <!-- Use this form for Tycho 23 or greater 
             <log>xml</log>
             <logDirectory>${project.build.directory}/compilelogs</logDirectory>
+            -->
             <showWarnings>true</showWarnings>
             <excludeResources>
               <exclude>**/package.html</exclude>
