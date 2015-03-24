@@ -9,15 +9,35 @@
 # its assumed oldname is old name of directory and buildId, such as I20120503-1800
 # newdirname is new name for directory, such as S-3.8M7-201205031800 and
 # newlabel is the new "short name" of the deliverables, such as 3.8M7
-oldname=$1
-newdirname=$2
-newlabel=$3
-dirname=$4
 
-if [[ -z "${dirname}" ]]
+if [[ $# != 3 && $# != 4 ]]
 then
-  dirname=$oldname
+  # usage:
+  scriptname=$(basename $0)
+  printf "\n\t%s\n" "This script, $scriptname requires three (optionally four) arguments, in order: "
+  printf "\t\t%s\t%s\n" "oldname" "(e.g. I20120503-1800) "
+  printf "\t\t%s\t%s\n" "newdirname" "(e.g. S-3.8M7-201205031800) "
+  printf "\t\t%s\t%s\n" "newlabel" "(e.g. 3.8M7 or 4.2M7 or KeplerM3) "
+  printf "\t\t%s\t%s\n" "dirname"  "Optional, this is used when the rename should be done on a directory other than 'oldName', such as for INDEX_ONLY update."
+  printf "\t%s\n" "for example,"
+  printf "\t%s\n\n" "./$scriptname I20120503-1800 S-3.8M7-201205031800 3.8M7 [S-3.8M7-201205031800]"
+  exit 1
+else
+  oldname=$1
+  newdirname=$2
+  newlabel=$3
+  dirname=$4
+  if [[ -z "${dirname}" ]]
+  then
+    dirname=$oldname
+  fi
+  printf "\n\tInput to renameBuild.sh:\n"
+  printf "\t\toldname: ${oldname}\n"
+  printf "\t\tnewdirname: ${newdirname}\n"
+  printf "\t\tnewlabel: ${newlabel}\n"
+  printf "\t\tdirname: ${dirname}\n\n\n"
 fi
+
 
 function renamefile ()
 {
@@ -36,28 +56,17 @@ function renamefile ()
   fi
 }
 
-if [[ $# != 3 | $# != 4 ]]
-then
-  # usage:
-  scriptname=$(basename $0)
-  printf "\n\t%s\n" "This script, $scriptname requires three (optionally four) arguments, in order: "
-  printf "\t\t%s\t%s\n" "oldname" "(e.g. I20120503-1800) "
-  printf "\t\t%s\t%s\n" "newdirname" "(e.g. S-3.8M7-201205031800) "
-  printf "\t\t%s\t%s\n" "newlabel" "(e.g. 3.8M7 or 4.2M7 or KeplerM3) "
-  printf "\t\t%s\t%s\n" "dirname"  "Optional, this is used when the rename should be done on a directory other than 'oldName', such as for INDEX_ONLY update."
-  printf "\t%s\n" "for example,"
-  printf "\t%s\n\n" "./$scriptname I20120503-1800 S-3.8M7-201205031800 3.8M7 [S-3.8M7-201205031800]"
-  exit 1
-fi
+
 if [[ "${oldname}" == "${dirname}" ]]
 then
   echo "Renaming build $oldname to $newdirname with $newlabel"
 else
-  echo "Renaming build $oldname to $newdirname with $newlabel but working in directory $dirname"
+  echo "Renaming build $oldname to $newdirname with $newlabel but working in directory ${dirname}"
 fi
-#be sure to do "long string" first, since "sort string" will also
+
+# be sure to do "long string" first, since "sort string" will also
 # match it.
-#https://bugs.eclipse.org/bugs/show_bug.cgi?id=435671#7
+# https://bugs.eclipse.org/bugs/show_bug.cgi?id=435671#7
 
 # specific "replaces" to make sure checksums URLs are correct for equinox
 fromString="EQ_BUILD_DIR_SEG = \"${oldname}\""
@@ -206,7 +215,7 @@ echo -e "\n\tReplacing ${oldString} with ${newString} in ${dirname}/buildpropert
 
 replaceBuildNameCommand="s!${oldString}!${newString}!g"
 # quotes are critical here, since strings might contain spaces!
-perl -w -pi -e "${replaceBuildNameCommand}" ${dirame}/buildproperties.php
+perl -w -pi -e "${replaceBuildNameCommand}" ${dirname}/buildproperties.php
 
 # One special case for promoted builds, is the "FAILED" icons are
 # changed to "OK", since all unit tests accounted for, if not fixed.
@@ -216,13 +225,15 @@ replaceBuildNameCommand="s!${oldString}!${newString}!g"
 # quotes are critical here, since strings might contain spaces!
 perl -w -pi -e "${replaceBuildNameCommand}" ${dirname}/index.php
 
-if [[ ! "${oldname}" == "${newdirname}" ]]
+# If the names are equal, then we must be doing an "index only" update, and no need to 
+# to 'move'
+if [[ ! "${dirname}" == "${newdirname}" ]]
 then
   echo -e "\n\n\tMove old directory, $oldname, to new directory, $newdirname.\n\n"
   # move directory before file renames
   mv $oldname $newdirname
 fi
-# We (currently) rename files under current direcotry, and in 'checksums'.
+# We (currently) rename files under current directory, and in 'checksums'.
 # No need to go deeper (currently) and can be harm, since we do have a copy of
 # 'repository' in there (so things things with same name as build directory, such
 # as branding bundles? and /repository/binaries get renamed too, if we go too deep.

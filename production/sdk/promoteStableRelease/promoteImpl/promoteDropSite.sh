@@ -36,7 +36,7 @@ then
   printf "\n\t%s\n\t%s to \n\t%s\n" "Making backup copy of original ..." "$DROP_ID" "${DROP_ID}ORIG"
   if [[ -e  ${DROP_ID} ]]
   then
-    rsync -ra ${DROP_ID}/ ${DROP_ID}ORIG
+    rsync -r ${DROP_ID}/ ${DROP_ID}ORIG
   else
     echo -e "\n\tERROR: the directory ${DROP_ID} does not exist\n"
     exit 1
@@ -60,10 +60,13 @@ else
   # just copy over what's there.
   # TODO: earlier, we could check to be sure the directory we expect really does exist.
   printf "\n\t%s\n" "Making copy (update) of original on top of previous renamed version. "
-
-  rsync -rua ${DROP_ID}/ ${DL_DROP_ID}/
-
-
+  if [[ -e  ${DROP_ID} ]]
+  then
+    rsync -ru ${DROP_ID}/ ${DL_DROP_ID}/
+  else
+    echo -e "\n\tERROR: the directory ${DROP_ID} does not exist\n"
+    exit 1
+  fi
 fi
 
 if [[ ! "${INDEX_ONLY}" == "true" ]]
@@ -77,7 +80,7 @@ fi
 
 if [[ ! "${INDEX_ONLY}" == "true" ]]
 then
-  printf "\n\t%s\n" "Moving backup copy back to original, since INDEX_ONLY was ${INDEX_ONLY}."
+  printf "\n\t%s\n" "Moving backup copy back to original, since INDEX_ONLY was not defined."
   mv ${DROP_ID}ORIG ${DROP_ID}
 else
   printf "\n\t%s\n" "Nothing to move back to original, since never copied to ORIG, since INDEX_ONLY was ${INDEX_ONLY}"

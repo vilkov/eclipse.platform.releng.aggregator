@@ -8,7 +8,7 @@
 
 # Used in name of repositories, tags, as well as names in Equinox.
 export TRAIN_NAME=Mars
-* Used in names and labels for Eclipse
+# Used in names and labels for Eclipse
 export RELEASE_NUMBER=4.5
 # LEAVE MILESTONE blank, present, but undefined if final release
 # But for true milestones, define as M1, M2, etc.
@@ -16,7 +16,7 @@ export RELEASE_NUMBER=4.5
 MILESTONE=M6
 
 # The site we are promoting FROM (always an I-build, for main stream, always M-build, for maintenance)
-export DROP_ID=I20150320-0800
+export DROP_ID=I20150323-1400
 
 # INDEX_ONLY means that everything has been promoted once already (and, made visible)
 # and we merely want to "rename" and "promote" any new unit tests
