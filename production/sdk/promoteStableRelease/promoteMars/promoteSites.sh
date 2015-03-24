@@ -1,30 +1,55 @@
 #!/usr/bin/env bash
 
 # Utility to rename build and "promote" it to DL Server.
+# Besides this main, "step 1" script, a number of "deferred" scripts are 
+# created, which are meant to be executed later, when it is time to make the 
+# build "visible". (this might be just a few minutes later, during normal development, 
+# but could be a day or two later, or even a week or two later, in the case of final release.
 
-# INDEX_ONLY means that everything has been promoted once already
+# Used in name of repositories, tags, as well as names in Equinox.
+export TRAIN_NAME=Mars
+* Used in names and labels for Eclipse
+export RELEASE_NUMBER=4.5
+# LEAVE MILESTONE blank, present, but undefined if final release
+# But for true milestones, define as M1, M2, etc.
+# and for RCs, is literally the RC number, such as RC1, RC2, etc.
+MILESTONE=M6
+
+# The site we are promoting FROM (always an I-build, for main stream, always M-build, for maintenance)
+export DROP_ID=I20150320-0800
+
+# INDEX_ONLY means that everything has been promoted once already (and, made visible)
 # and we merely want to "rename" and "promote" any new unit tests
 # or performance tests that have completed since the initial promotion.
-# Some ways it differs: If set, existing "site" (on build machine) is
+# Some ways it differs if set: existing "site" (on build machine) is
 # not deleted first. Only the main Eclipse site is effected, not
-# equinox, not update site. None of the "deferred" stuff is set.
+# Equinox, not update site. None of the "deferred" stuff is set.
+# We only ever check for 'true', so can leave un-set if not applicable.
 #export INDEX_ONLY=true
-# We only ever check for 'true'
-#export INDEX_ONLY=false
 
-export DROP_ID=I20150129-1830
+# These are what precedes main drop directory name (of where promote is going TO)
+# For Maintenance, it's always 'M' (from M-build) until it's 'R' for release (always start with original M-build)
+# for main line code, it's 'S' (from I-build) until it's 'R'for release (always start with original I-build)
+export DL_TYPE=S
+#export DL_TYPE=R
+#export DL_TYPE=M
 
-export DL_LABEL=4.5M5
-export DL_LABEL_EQ=MarsM5
-#export DL_LABEL=4.5
-#export DL_LABEL_EQ=Mars
+# Label used for Eclipse (for various labels and is "middle" of filenames)
+export DL_LABEL=${RELEASE_NUMBER}${MILESTONE}
 
+# Label used for Equinox (for various labels and is "middle" of filenames)
+export DL_LABEL_EQ=${TRAIN_NAME}${MILESTONE}
+
+# This is last segment of where milestones go.
 # for I builds, stable and RCs go to in milestones
 # for M builds, even RCs also go in <version>-M-builds
 #export REPO_SITE_SEGMENT=4.5-M-builds
 export REPO_SITE_SEGMENT=4.5milestones
 #export REPO_SITE_SEGMENT=4.5
 
+# We always "hide" if doing initial promote, to allow early promote,
+# as well as a chance to sanity check. But, during "index only" there
+# is no reason to, as long as it is "visible" already.
 if [[ "$INDEX_ONLY" == "true" ]]
 then
   export HIDE_SITE=false
@@ -32,15 +57,10 @@ else
   export HIDE_SITE=true
 fi
 
-# These are what precedes main drop directory name
-# For Maintenance, it's always 'M' (from M-build) until it's 'R'.
-# for main line code, it's 'S' (from I-build) until it's 'R'
-export DL_TYPE=S
-#export DL_TYPE=R
-#export DL_TYPE=M
 
 # = = = = = = = Things past here seldom need to be updated
 
+# CL stands for "check list" so this stands for main "output directory" for things like "checklist"
 export CL_SITE=${PWD}
 echo "CL_SITE: ${CL_SITE}"
 
@@ -58,9 +78,6 @@ export NEW_ANNOTATION="${DL_LABEL_EQ}"
 # should very seldom need to change, if ever.
 export AGGR_LOCATION="gitCache/eclipse.platform.releng.aggregator"
 
-# Used in naming repo, etc
-export TRAIN_NAME=Mars
-
 # Build machine locations (would very seldom change)
 export BUILD_ROOT=/shared/eclipse/builds/4I
 export BUILDMACHINE_BASE_SITE=${BUILD_ROOT}/siteDir/updates/4.5-I-builds
@@ -72,9 +89,11 @@ export BUILD_TIMESTAMP=${DROP_ID//[MI-]/}
 
 # Eclipse Drop Site (final segment)
 export ECLIPSE_DL_DROP_DIR_SEGMENT=${DL_TYPE}-${DL_LABEL}-${BUILD_TIMESTAMP}
+
 # Equinox Drop Site (final segment)
 export EQUINOX_DL_DROP_DIR_SEGMENT=${DL_TYPE}-${DL_LABEL_EQ}-${BUILD_TIMESTAMP}
 
+# produce checklist and deferred (step 2) scripts.
 if [[ ! "${INDEX_ONLY}" == "true" ]]
 then
   printf "\n\t%s\n\n" "Promoted on: $( date )" > "${CL_SITE}/checklist.txt"
@@ -99,10 +118,9 @@ else
   printf "\n\tINFO: %s\n" "Doing an INDEX_ONLY run, so deferred script not produced."
 fi
 
+# create Equinox promote script. It is executed by an Equinox committers cron job.
 if [[ ! "${INDEX_ONLY}" == "true" ]]
 then
-  # we do Equinox first, since it has to wait in que until
-  # cronjob promotes it
   ${PROMOTE_IMPL}/promoteDropSiteEq.sh ${DROP_ID} ${DL_LABEL_EQ} ${HIDE_SITE}
   rccode=$?
   if [[ $rccode != 0 ]]
@@ -114,6 +132,7 @@ else
   printf "\n\tINFO: %s\n" "Doing an INDEX_ONLY run, so equinox not promoted."
 fi
 
+# promote Eclipse
 ${PROMOTE_IMPL}/promoteDropSite.sh   ${DROP_ID} ${DL_LABEL} ${HIDE_SITE}
 rccode=$?
 if [[ $rccode != 0 ]]
@@ -122,7 +141,7 @@ then
   exit $rccode
 fi
 
-
+# promote repository
 if [[ ! "${INDEX_ONLY}" == "true" ]]
 then
   ${PROMOTE_IMPL}/promoteRepo.sh ${DROP_ID} ${DL_LABEL} ${REPO_SITE_SEGMENT} ${HIDE_SITE}
@@ -140,7 +159,7 @@ if [[ ! "${INDEX_ONLY}" == "true" ]]
 then
   # If all goes well, we create the "tag script", but don't actually run it
   # until we make the site visible, after doing sanity checking, etc.
-  # Note, this script relies on a number of exported variables
+  # Note, creating this script relies on a number of exported variables
   ${PROMOTE_IMPL}/tagPromotedBuilds.sh
   rccode=$?
   if [[ $rccode != 0 ]]
@@ -152,12 +171,11 @@ else
   printf "\n\tINFO: %s\n" "Doing an INDEX_ONLY run, so tagging script not promoted."
 fi
 
+# create overall deferred script, to execute later.
 if [[ ! "${INDEX_ONLY}" == "true" ]]
 then
-
   # create script that automates the second step, doing all deferred actions at once.
   # (other than sending final email, and updating b3 aggregation file).
-
   ${PROMOTE_IMPL}/createDeferredStepsScript.sh
   rccode=$?
   if [[ $rccode != 0 ]]
@@ -166,8 +184,7 @@ then
     exit $rccode
   fi
 else
-  printf "\n\tINFO: %s\n" "Doing an INDEX_ONLY run, so deferred step script not promoted."
+  printf "\n\tINFO: %s\n" "Doing an INDEX_ONLY run, so deferred step script not created."
 fi
-
 
 exit 0

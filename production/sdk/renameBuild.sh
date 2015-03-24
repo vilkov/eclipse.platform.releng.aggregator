@@ -12,6 +12,12 @@
 oldname=$1
 newdirname=$2
 newlabel=$3
+dirname=$4
+
+if [[ -z "${dirname}" ]]
+then
+  dirname=$oldname
+fi
 
 function renamefile ()
 {
@@ -22,25 +28,33 @@ function renamefile ()
     if [[ $1 =~ (.*)($oldname)(.*) ]]
     then
       echo "changing $1 to ${BASH_REMATCH[1]}$newlabel${BASH_REMATCH[3]}"
+      #TODO Could check here, if already equal, and if so, do not try "mv", though doubt it hurts
+      # anything, it clutters log with confusing messages during "INDEX_ONLY" update.
+      # BUT, some files might have to be updated, so we can not just skip.
       mv "$1" "${BASH_REMATCH[1]}$newlabel${BASH_REMATCH[3]}"
     fi
   fi
 }
 
-if [[ $# != 3 ]]
+if [[ $# != 3 | $# != 4 ]]
 then
   # usage:
   scriptname=$(basename $0)
-  printf "\n\t%s\n" "This script, $scriptname requires three arguments, in order: "
+  printf "\n\t%s\n" "This script, $scriptname requires three (optionally four) arguments, in order: "
   printf "\t\t%s\t%s\n" "oldname" "(e.g. I20120503-1800) "
   printf "\t\t%s\t%s\n" "newdirname" "(e.g. S-3.8M7-201205031800) "
   printf "\t\t%s\t%s\n" "newlabel" "(e.g. 3.8M7 or 4.2M7 or KeplerM3) "
+  printf "\t\t%s\t%s\n" "dirname"  "Optional, this is used when the rename should be done on a directory other than 'oldName', such as for INDEX_ONLY update."
   printf "\t%s\n" "for example,"
-  printf "\t%s\n\n" "./$scriptname I20120503-1800 S-3.8M7-201205031800 3.8M7"
+  printf "\t%s\n\n" "./$scriptname I20120503-1800 S-3.8M7-201205031800 3.8M7 [S-3.8M7-201205031800]"
   exit 1
 fi
-echo "Renaming build $oldname to $newdirname with $newlabel"
-
+if [[ "${oldname}" == "${dirname}" ]]
+then
+  echo "Renaming build $oldname to $newdirname with $newlabel"
+else
+  echo "Renaming build $oldname to $newdirname with $newlabel but working in directory $dirname"
+fi
 #be sure to do "long string" first, since "sort string" will also
 # match it.
 #https://bugs.eclipse.org/bugs/show_bug.cgi?id=435671#7
@@ -50,14 +64,14 @@ fromString="EQ_BUILD_DIR_SEG = \"${oldname}\""
 toString="EQ_BUILD_DIR_SEG = \"${EQUINOX_DL_DROP_DIR_SEGMENT}\""
 replaceDirCommand="s!${fromString}!${toString}!g"
 echo "replaceDirCommand: $replaceDirCommand"
-perl -w -pi -e "${replaceDirCommand}" ${oldname}/buildproperties.*
+perl -w -pi -e "${replaceDirCommand}" ${dirname}/buildproperties.*
 
 # specific "replace" to make sure checksums URLs are correct for eclipse
 fromString="BUILD_DIR_SEG = \"${oldname}\""
 toString="BUILD_DIR_SEG = \"${ECLIPSE_DL_DROP_DIR_SEGMENT}\""
 replaceDirCommand="s!${fromString}!${toString}!g"
 echo "replaceDirCommand: $replaceDirCommand"
-perl -w -pi -e "${replaceDirCommand}" ${oldname}/buildproperties.*
+perl -w -pi -e "${replaceDirCommand}" ${dirname}/buildproperties.*
 
 fromString=$oldname
 toString=$newlabel
@@ -70,16 +84,16 @@ replaceCommand="s!${fromString}!${toString}!g"
 # name, not just "label".
 # See https://bugs.eclipse.org/bugs/show_bug.cgi?id=414739
 replaceDirCommand="s!/${fromString}/!/${newdirname}/!g"
-perl -w -pi -e ${replaceDirCommand} ${oldname}/buildproperties.*
+perl -w -pi -e ${replaceDirCommand} ${dirname}/buildproperties.*
 
 # not all these file types may exist, we include all the commonly used ones, though,
 # just in case future changes to site files started to have them. There is no harm, per se,
 # if the perl command fails.
 # TODO: could add some "smarts" here to see if all was as expected before making changes.
-perl -w -pi -e ${replaceCommand} ${oldname}/*.php
-perl -w -pi -e ${replaceCommand} ${oldname}/*.html
-perl -w -pi -e ${replaceCommand} ${oldname}/*.xml 2>/dev/null
-perl -w -pi -e ${replaceCommand} ${oldname}/checksum/*
+perl -w -pi -e ${replaceCommand} ${dirname}/*.php
+perl -w -pi -e ${replaceCommand} ${dirname}/*.html
+perl -w -pi -e ${replaceCommand} ${dirname}/*.xml 2>/dev/null
+perl -w -pi -e ${replaceCommand} ${dirname}/checksum/*
 
 # TODO: need to make this part of case statement, to handle
 # Integration --> Stable
@@ -121,7 +135,7 @@ echo -e "\n\tReplacing ${oldString} with ${newString} in ${oldname}/*.php\n"
 
 replaceBuildNameCommand="s!${oldString}!${newString}!g"
 # quotes are critical here, since strings contain spaces!
-perl -w -pi -e "${replaceBuildNameCommand}" ${oldname}/*.php
+perl -w -pi -e "${replaceBuildNameCommand}" ${dirname}/*.php
 
 # some special cases, for the buildproperties.php file
 # Note, we do php only, since that's what we need, and if we did want
@@ -162,7 +176,7 @@ fi
 
 replaceBuildNameCommand="s!${oldString}!${newString}!g"
 # quotes are critical here, since strings contain spaces!
-perl -w -pi -e "${replaceBuildNameCommand}" ${oldname}/buildproperties.php
+perl -w -pi -e "${replaceBuildNameCommand}" ${dirname}/buildproperties.php
 
 # We only ever promote "I" or "M" builds, so this ends with sanity check.
 if [[ $OLD_BUILD_TYPE == "I" ]]
@@ -188,11 +202,11 @@ else
   newString="BUILD_TYPE_NAME = \"Release\""
 fi
 
-echo -e "\n\tReplacing ${oldString} with ${newString} in ${oldname}/buildproperties.php\n"
+echo -e "\n\tReplacing ${oldString} with ${newString} in ${dirname}/buildproperties.php\n"
 
 replaceBuildNameCommand="s!${oldString}!${newString}!g"
 # quotes are critical here, since strings might contain spaces!
-perl -w -pi -e "${replaceBuildNameCommand}" ${oldname}/buildproperties.php
+perl -w -pi -e "${replaceBuildNameCommand}" ${dirame}/buildproperties.php
 
 # One special case for promoted builds, is the "FAILED" icons are
 # changed to "OK", since all unit tests accounted for, if not fixed.
@@ -200,13 +214,14 @@ oldString="FAIL.gif"
 newString="OK.gif"
 replaceBuildNameCommand="s!${oldString}!${newString}!g"
 # quotes are critical here, since strings might contain spaces!
-perl -w -pi -e "${replaceBuildNameCommand}" ${oldname}/index.php
+perl -w -pi -e "${replaceBuildNameCommand}" ${dirname}/index.php
 
-echo -e "\n\n\tMove old directory, $oldname, to new directory, $newdirname.\n\n"
-
-# move directory before file renames
-mv $oldname $newdirname
-
+if [[ ! "${oldname}" == "${newdirname}" ]]
+then
+  echo -e "\n\n\tMove old directory, $oldname, to new directory, $newdirname.\n\n"
+  # move directory before file renames
+  mv $oldname $newdirname
+fi
 # We (currently) rename files under current direcotry, and in 'checksums'.
 # No need to go deeper (currently) and can be harm, since we do have a copy of
 # 'repository' in there (so things things with same name as build directory, such
