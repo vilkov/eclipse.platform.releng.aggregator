@@ -5,9 +5,9 @@
   are made available under the terms of the Eclipse Distribution License v1.0
   which accompanies this distribution, and is available at
   http://www.eclipse.org/org/documents/edl-v10.php
- 
+
   Contributors:
-     IBM Corporation and others - initial implementation
+  IBM Corporation and others - initial implementation
 -->
 <project
   xmlns="http://maven.apache.org/POM/4.0.0"
@@ -26,11 +26,11 @@
   <artifactId>eclipse.platform.releng.java9patch</artifactId>
   <version>4.5.0-SNAPSHOT</version>
   <packaging>pom</packaging>
-  
-    <properties>
+
+  <properties>
     <tycho.scmUrl>scm:git:git://git.eclipse.org/gitroot/platform/eclipse.platform.releng.aggregator</tycho.scmUrl>
   </properties>
-  
+
   <modules>
     <module>../../eclipse-platform-parent</module>
     <module>../../eclipse.platform.releng.prereqs.sdk</module>
@@ -40,8 +40,6 @@
     <module>../../eclipse.jdt.debug/org.eclipse.jdt.launching</module>
     <module>../../eclipse.jdt.ui/org.eclipse.jdt.ui</module>
     <module>org.eclipse.jdt.java9patch</module>
-    <!--  <module>eclipse.releng.product.java9patch</module> -->
     <module>eclipse.releng.repository.java9patch</module>
-
   </modules>
 </project>
