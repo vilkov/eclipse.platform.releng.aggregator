@@ -13,7 +13,7 @@ printf "\n\tDEBUG: %s\n" "BUILD_ROOT: ${BUILD_ROOT}"
 #printf "\n\ERROR: %\n" "Script needs to be updated for java9patch, if needed, and these lines removed"
 #exit 1
 
-./addRepoProperties.sh \
+./addRepoPropertiesPatchBuild.sh \
   "/home/data/httpd/download.eclipse.org/eclipse/updates/4.5-P-builds/P20150622-0925" \
   "4.5-P-builds" \
   "P20150622-0925" \

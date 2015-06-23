@@ -3,6 +3,8 @@
 # Utility to add "stats" to repos. For documentation, see
 # https://wiki.eclipse.org/WTP/Releng/Tools/addRepoProperties
 
+# I theory, with a few more variables? This script should be the same 
+# as addRepoProperties.sh
 
 export PROMOTE_IMPL=${PROMOTE_IMPL:-/shared/eclipse/sdk/promoteStableRelease/promoteImpl}
 
@@ -51,10 +53,10 @@ else
 fi
 
 # TODO: control with variable!
-ART_REPO_NAME="Eclipse Project Repository for ${TRAIN_NAME}"
-CON_REPO_NAME="Eclipse Project Repository for ${TRAIN_NAME}"
-#ART_REPO_NAME=Eclipse Project Java 8 Patch Repository for Kepler SR2
-#CON_REPO_NAME=Eclipse Project Java 8 Patch Repository for Kepler SR2
+#ART_REPO_NAME="Eclipse Project Repository for ${TRAIN_NAME}"
+#CON_REPO_NAME="Eclipse Project Repository for ${TRAIN_NAME}"
+ART_REPO_NAME="Eclipse Project Java 9 Patch Repository for Eclipse 4.5 (Mars Release)"
+CON_REPO_NAME="Eclipse Project Java 9 Patch Repository for Eclipse 4.5 (Mars Release)"
 
 MIRRORS_URL_ARG=-Dp2MirrorsURL=${MIRRORURL_ARG}
 ART_REPO_ARG=-DartifactRepoDirectory=${REPO}
@@ -64,13 +66,13 @@ CON_REPO_NAME_ARG=-Dp2MetadataRepositoryName=\"${CON_REPO_NAME}\"
 
 if [[ -n "${STATS_TAG_FEATURE_LIST}" ]]
 then
-  STATS_TAG_FEATURE_LIST_ARG="-DstatsTrackedArtifacts=\"${STATS_TAG_FEATURE_LIST}\""
+  STATS_TAG_FEATURE_LIST_ARG="-DstatsTrackedArtifacts=${STATS_TAG_FEATURE_LIST}"
   # no sense setting these others, if features not set
   # TODO: more error checking could be done, to warn, such if features list set, but other values not
-  STATS_TAG_VERSIONINDICATOR_ARG="-Dp2StatsURI=\"http://download.eclipse.org/stats${MIRRORURL}\""
+  STATS_TAG_VERSIONINDICATOR_ARG="-Dp2StatsURI=http://download.eclipse.org/stats${MIRRORURL}"
   if [[ -n ${STATS_TAG_SUFFIX} ]]
   then
-    STATS_TAG_SUFFIX_ARG="-DstatsArtifactsSuffix=\"${STATS_TAG_SUFFIX}\""
+    STATS_TAG_SUFFIX_ARG="-DstatsArtifactsSuffix=${STATS_TAG_SUFFIX}"
   fi
 fi
 
@@ -108,8 +110,8 @@ then
       echo "found eclipse executable, will execute:"
       echo "${ECLIPSE_EXE} --launcher.suppressErrors -nosplash -consolelog -debug -data ${devworkspace} -application ${APP_NAME} -vm ${JAVA_EXEC_DIR} -vmargs ${MIRRORS_URL_ARG} ${ART_REPO_ARG} ${CON_REPO_ARG} ${ART_REPO_NAME_ARG} ${CON_REPO_NAME_ARG} ${STATS_TAG_FEATURE_LIST_ARG} ${STATS_TAG_VERSIONINDICATOR_ARG} ${STATS_TAG_SUFFIX_ARG}"
       # we may need to 'clean' here, since using an installation that has been moved?
-      #${ECLIPSE_EXE} --launcher.suppressErrors -nosplash -consolelog -debug -data ${devworkspace} -application ${APP_NAME} -vm ${JAVA_EXEC_DIR} -vmargs ${MIRRORS_URL_ARG} ${ART_REPO_ARG} ${CON_REPO_ARG} ${ART_REPO_NAME_ARG} ${CON_REPO_NAME_ARG} ${STATS_TAG_FEATURE_LIST_ARG} ${STATS_TAG_VERSIONINDICATOR_ARG} ${STATS_TAG_SUFFIX_ARG}
-      ${ECLIPSE_EXE} --launcher.suppressErrors -nosplash -consolelog -debug -data ${devworkspace} -application ${APP_NAME} -vm ${JAVA_EXEC_DIR} -vmargs ${MIRRORS_URL_ARG} -Dp2ArtifactRepositoryName="${ART_REPO_NAME}" -Dp2MetadataRepositoryName="${CON_REPO_NAME}" ${ART_REPO_ARG} ${CON_REPO_ARG}
+       ${ECLIPSE_EXE} --launcher.suppressErrors -nosplash -consolelog -debug -data ${devworkspace} -application ${APP_NAME} -vm ${JAVA_EXEC_DIR} -vmargs ${MIRRORS_URL_ARG} -Dp2ArtifactRepositoryName="${ART_REPO_NAME}" -Dp2MetadataRepositoryName="${CON_REPO_NAME}" ${ART_REPO_ARG} ${CON_REPO_ARG} ${STATS_TAG_FEATURE_LIST_ARG} ${STATS_TAG_VERSIONINDICATOR_ARG} ${STATS_TAG_SUFFIX_ARG}
+      #${ECLIPSE_EXE} --launcher.suppressErrors -nosplash -consolelog -debug -data ${devworkspace} -application ${APP_NAME} -vm ${JAVA_EXEC_DIR} -vmargs ${MIRRORS_URL_ARG} -Dp2ArtifactRepositoryName="${ART_REPO_NAME}" -Dp2MetadataRepositoryName="${CON_REPO_NAME}" ${ART_REPO_ARG} ${CON_REPO_ARG}
       RC=$?
     else
       printf "\n\tERROR: %s\n\n" "The Eclipse commmand, ${ECLIPSE_EXE}, was not executable or not specified"
