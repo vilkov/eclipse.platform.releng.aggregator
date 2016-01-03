@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project
+  default="main"
+  basedir=".">
+
+  <!-- 
+       This file is to apply the extractTable.xsl file, to the testResults.html file.
+       The purpose is to extract unit tests that have an error (or DNF). 
+  -->
+  
+  <target name="main">
+    <property
+      name="xslFile"
+      value="extractTable.xsl" />
+    <property
+      name="htmlFile"
+      value="testResults.html" />
+
+    <echo message="xslFile: ${xslFile}" />
+    <echo message="htmlFile: ${htmlFile}" />
+    <echo message="calling the XSLT ant task" />
+    <xslt
+      in="${htmlFile}"
+      out="min-${htmlFile}"
+      style="${xslFile}"
+      force="true">
+    </xslt>
+  </target>
+
+</project>

@@ -1,0 +1,12 @@
+- generate testResults.html (php) to contain valid XML 
+-- "strict" would be best
+-- HTML 5 would be best
+
+
+- use window's "xslt visualizer" to match "row/group/tbody" with at least one 
+  error or DNF. 
+  
+-- best if install Windows on Mac
+   (remember to change 'sign out' data?) 
+   
+   

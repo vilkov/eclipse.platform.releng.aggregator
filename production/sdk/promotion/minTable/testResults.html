@@ -1,0 +1,1292 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<title>Test Results for I20151229-0800</title>
+
+
+<style type="text/css">
+<!--
+p {
+     text-indent: 30pt;
+     margin: inherit
+}
+-->
+</style>
+<meta
+  http-equiv="Content-Type"
+  content="text/html; charset=iso-8859-1" />
+<meta
+  name="author"
+  content="Eclipse Foundation, Inc." />
+<meta
+  name="keywords"
+  content="eclipse,project,plug-ins,plugins,java,ide,swt,refactoring,free java ide,tools,platform,open source,development environment,development,ide" />
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="http://download.eclipse.org/eclipse.org-common//themes/Phoenix/css/visual.css"
+  media="screen" />
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="http://download.eclipse.org/eclipse.org-common//themes/Phoenix/css/layout.css"
+  media="screen" />
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="http://download.eclipse.org/eclipse.org-common//themes/Phoenix/css/print.css"
+  media="print" />
+<script type="text/javascript">
+	<![CDATA[
+	sfHover = function() {
+		var sfEls = document.getElementById("leftnav").getElementsByTagName(
+				"li");
+		for (var i = 0; i < sfEls.length; i++) {
+			sfEls[i].onmouseover = function() {
+				this.className += " sfhover";
+			}
+			sfEls[i].onmouseout = function() {
+				this.className = this.className.replace(new RegExp(
+						" sfhover\\b"), "");
+			}
+		}
+	}
+	if (window.attachEvent)
+		window.attachEvent("onload", sfHover);
+	]]>
+</script>
+</head>
+<body>
+
+
+  <div id="leftcol">
+    <ul id="leftnav">
+      <li><a href="#Logs">Logs</a></li>
+      <li><a href="#UnitTest">Unit Test Results</a></li>
+      <li><a href="#PluginsErrors">Plugins Containing Compile Errors</a></li>
+
+    </ul>
+
+  </div>
+  <!-- end 'not build failed' -->
+
+  <div id="midcolumn">
+    <h2>Test Results</h2>
+    <div class="homeitem3col">
+      <h3 id="Logs">Logs I20151229-0800</h3>
+      <ul>
+
+        <li><a href="logs.php#javadoc"> Javadoc Logs </a></li>
+        <li><a href="logs.php#console"> Console Output Logs </a></li>
+        <li><a href="buildlogs.php">Release engineering build logs</a></li>
+        <li><a href="apitools/analysis/html/index.html">API Tools Version Verification Report</a> This tool verifies the versions of the plugins against Eclipse 4.5.1.&nbsp;&nbsp; Exclusions are
+          listed in <a
+          href="http://git.eclipse.org/c/platform/eclipse.platform.releng.aggregator.git/tree/eclipse.platform.releng.tychoeclipsebuilder/eclipse/apiexclude/exclude_list_external.txt?h=master">.../apiexclude/exclude_list_external.txt</a>.</li>
+      </ul>
+      <ul>
+
+        <li><a href="apitools/deprecation/apideprecation.html">API Tools Deprecation Report</a> This tool generates a report for API deprecated since 4.5.1.</li>
+
+        <li>No freeze report. Only generated in main stream after M6.</li>
+        <li><a href="apitools/apifilters-I20151229-0800.zip">Zip of .api_filters files used in the build</a></li>
+        <li>eclipse.platform.releng.aggregator: master (branch or hash: 92b6966bfdf06eb4a1f423db1dc0fe6b0f6faae3)</li>
+        <li>org.eclipse.releng.basebuilder (only used to start unit tests): R38M6PlusRC3G</li>
+        <li>View the <a href="performance/performance.php">performance test results</a> for the current build.
+        </li>
+      </ul>
+
+    </div>
+
+    <div class="homeitem3col">
+      <h3 id="UnitTest">Unit Test Results for I20151229-0800</h3>
+
+      <p>
+        The unit tests are run on the <a href="https://hudson.eclipse.org/shared/view/Eclipse%20and%20Equinox/">shared Hudson instance</a>.
+      </p>
+
+      <p>
+        The table shows the unit test results for this build on the platforms tested. You may access the test results page specific to each component on a specific platform by clicking the cell link.
+        Normally, the number of errors is indicated in the cell. A "-1" or "DNF" means the test "Did Not Finish" for unknown reasons and hence no results page is available. In that case, more
+        information can sometimes be found in the <a href="logs.php#console">console logs</a>.
+      </p>
+
+
+
+      <table class="junittable"
+        width="85%"
+        border="1"
+        bgcolor="#EEEEEE"
+        rules="groups"
+        align="center">
+        <tr bgcolor="#9999CC">
+          <th
+            rowspan="2"
+            width="40%"
+            align="center">org.eclipse <br /> Component
+          </th>
+          <th
+            colspan="5"
+            align="center">Test Configurations</th>
+        </tr>
+        <tr bgcolor="#9999CC">
+          <!-- The order of the columns is "hard coded". Linux, Mac, Windows -->
+          <th width="25%">linux.gtk.x86_64_8.0</th>
+          <th width="25%">macosx.cocoa.x86_64_8.0</th>
+          <th width="25%">win32.win32.x86_8.0</th>
+          <th width="10%"></th>
+        </tr>
+
+
+        <tbody>
+          <tr>
+            <td>ant.tests.*</td>
+          </tr>
+          <tr>
+            <td>ant.tests.core</td>
+            <td align="center"><a href="testresults/html/org.eclipse.ant.tests.core_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.ant.tests.core_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.ant.tests.core_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.ant.tests.core_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.ant.tests.core_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.ant.tests.core_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+          <tr>
+            <td>ant.tests.ui</td>
+            <td align="center"><a href="testresults/html/org.eclipse.ant.tests.ui_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.ant.tests.ui_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.ant.tests.ui_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.ant.tests.ui_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.ant.tests.ui_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.ant.tests.ui_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>compare.tests</td>
+            <td align="center"><a href="testresults/html/org.eclipse.compare.tests_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.compare.tests_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.compare.tests_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.compare.tests_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.compare.tests_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.compare.tests_win32.win32.x86_8.0.xml">(XML)</a></td>
+
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>core.expressions.tests</td>
+            <td align="center"><a href="testresults/html/org.eclipse.core.expressions.tests_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.core.expressions.tests_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.core.expressions.tests_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.core.expressions.tests_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.core.expressions.tests_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.core.expressions.tests_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>core.filebuffers.tests</td>
+            <td align="center"><a href="testresults/html/org.eclipse.core.filebuffers.tests_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.core.filebuffers.tests_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.core.filebuffers.tests_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.core.filebuffers.tests_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.core.filebuffers.tests_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.core.filebuffers.tests_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>core.tests.*</td>
+          </tr>
+          <tr>
+            <td>core.tests.net</td>
+            <td align="center"><a href="testresults/html/org.eclipse.core.tests.net_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.core.tests.net_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.core.tests.net_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.core.tests.net_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.core.tests.net_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.core.tests.net_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+          <tr>
+            <td>core.tests.resources</td>
+            <td align="center"><a href="testresults/html/org.eclipse.core.tests.resources_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.core.tests.resources_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.core.tests.resources_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.core.tests.resources_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.core.tests.resources_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.core.tests.resources_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+          <tr>
+            <td>core.tests.runtime</td>
+            <td align="center"><a href="testresults/html/org.eclipse.core.tests.runtime_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.core.tests.runtime_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.core.tests.runtime_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.core.tests.runtime_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.core.tests.runtime_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.core.tests.runtime_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>debug.tests</td>
+            <td align="center"><a href="testresults/html/org.eclipse.debug.tests_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.debug.tests_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.debug.tests_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.debug.tests_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.debug.tests_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.debug.tests_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>e4.core.commands.tests</td>
+            <td align="center"><a href="testresults/html/org.eclipse.e4.core.commands.tests_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.e4.core.commands.tests_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.e4.core.commands.tests_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.e4.core.commands.tests_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.e4.core.commands.tests_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.e4.core.commands.tests_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>e4.core.tests</td>
+            <td align="center"><a href="testresults/html/org.eclipse.e4.core.tests_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.e4.core.tests_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.e4.core.tests_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.e4.core.tests_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.e4.core.tests_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.e4.core.tests_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>e4.ui.bindings.tests</td>
+            <td align="center"><a href="testresults/html/org.eclipse.e4.ui.bindings.tests_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.e4.ui.bindings.tests_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.e4.ui.bindings.tests_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.e4.ui.bindings.tests_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.e4.ui.bindings.tests_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.e4.ui.bindings.tests_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>e4.ui.tests.*</td>
+          </tr>
+          <tr>
+            <td>e4.ui.tests.css.core</td>
+            <td align="center"><a href="testresults/html/org.eclipse.e4.ui.tests.css.core_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.e4.ui.tests.css.core_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.e4.ui.tests.css.core_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.e4.ui.tests.css.core_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.e4.ui.tests.css.core_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.e4.ui.tests.css.core_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+          <tr>
+            <td>e4.ui.tests.css.swt</td>
+            <td align="center"><a href="testresults/html/org.eclipse.e4.ui.tests.css.swt_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.e4.ui.tests.css.swt_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.e4.ui.tests.css.swt_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.e4.ui.tests.css.swt_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.e4.ui.tests.css.swt_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.e4.ui.tests.css.swt_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+          <tr>
+            <td>e4.ui.tests</td>
+            <td align="center"><a href="testresults/html/org.eclipse.e4.ui.tests_linux.gtk.x86_64_8.0.html"><font color="#ff0000">(1)</font></a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.e4.ui.tests_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.e4.ui.tests_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.e4.ui.tests_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.e4.ui.tests_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.e4.ui.tests_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>equinox.bidi.tests</td>
+            <td align="center"><a href="testresults/html/org.eclipse.equinox.bidi.tests_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.equinox.bidi.tests_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.equinox.bidi.tests_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.equinox.bidi.tests_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.equinox.bidi.tests_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.equinox.bidi.tests_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>equinox.ds.tests</td>
+            <td align="center"><a href="testresults/html/org.eclipse.equinox.ds.tests_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.equinox.ds.tests_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.equinox.ds.tests_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.equinox.ds.tests_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.equinox.ds.tests_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.equinox.ds.tests_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>equinox.p2.tests.*</td>
+          </tr>
+          <tr>
+            <td>equinox.p2.tests.discovery</td>
+            <td align="center"><a href="testresults/html/org.eclipse.equinox.p2.tests.discovery_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.equinox.p2.tests.discovery_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.equinox.p2.tests.discovery_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.equinox.p2.tests.discovery_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.equinox.p2.tests.discovery_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.equinox.p2.tests.discovery_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+          <tr>
+            <td>equinox.p2.tests.ui</td>
+            <td align="center"><a href="testresults/html/org.eclipse.equinox.p2.tests.ui_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.equinox.p2.tests.ui_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.equinox.p2.tests.ui_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.equinox.p2.tests.ui_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.equinox.p2.tests.ui_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.equinox.p2.tests.ui_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+          <tr>
+            <td>equinox.p2.tests</td>
+            <td align="center"><a href="testresults/html/org.eclipse.equinox.p2.tests_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.equinox.p2.tests_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.equinox.p2.tests_macosx.cocoa.x86_64_8.0.html"><font color="#ff0000">(32)</font></a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.equinox.p2.tests_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.equinox.p2.tests_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.equinox.p2.tests_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>equinox.security.tests</td>
+            <td align="center"><a href="testresults/html/org.eclipse.equinox.security.tests_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.equinox.security.tests_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.equinox.security.tests_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.equinox.security.tests_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.equinox.security.tests_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.equinox.security.tests_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>jdt.apt.pluggable.tests</td>
+            <td align="center"><a href="testresults/html/org.eclipse.jdt.apt.pluggable.tests_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.jdt.apt.pluggable.tests_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.jdt.apt.pluggable.tests_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.jdt.apt.pluggable.tests_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.jdt.apt.pluggable.tests_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.jdt.apt.pluggable.tests_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>jdt.apt.tests</td>
+            <td align="center"><a href="testresults/html/org.eclipse.jdt.apt.tests_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.jdt.apt.tests_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.jdt.apt.tests_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.jdt.apt.tests_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.jdt.apt.tests_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.jdt.apt.tests_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>jdt.compiler.apt.tests</td>
+            <td align="center"><a href="testresults/html/org.eclipse.jdt.compiler.apt.tests_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.jdt.compiler.apt.tests_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.jdt.compiler.apt.tests_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.jdt.compiler.apt.tests_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.jdt.compiler.apt.tests_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.jdt.compiler.apt.tests_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>jdt.compiler.tool.tests</td>
+            <td align="center"><a href="testresults/html/org.eclipse.jdt.compiler.tool.tests_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.jdt.compiler.tool.tests_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.jdt.compiler.tool.tests_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.jdt.compiler.tool.tests_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.jdt.compiler.tool.tests_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.jdt.compiler.tool.tests_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>jdt.core.tests.*</td>
+          </tr>
+          <tr>
+            <td>jdt.core.tests.builder</td>
+            <td align="center"><a href="testresults/html/org.eclipse.jdt.core.tests.builder_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.jdt.core.tests.builder_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.jdt.core.tests.builder_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.jdt.core.tests.builder_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.jdt.core.tests.builder_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.jdt.core.tests.builder_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+          <tr>
+            <td>jdt.core.tests.compiler</td>
+            <td align="center"><a href="testresults/html/org.eclipse.jdt.core.tests.compiler_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.jdt.core.tests.compiler_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.jdt.core.tests.compiler_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.jdt.core.tests.compiler_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.jdt.core.tests.compiler_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.jdt.core.tests.compiler_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+          <tr>
+            <td>jdt.core.tests.model</td>
+            <td align="center"><a href="testresults/html/org.eclipse.jdt.core.tests.model_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.jdt.core.tests.model_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.jdt.core.tests.model_macosx.cocoa.x86_64_8.0.html"><font color="#ff0000">(1)</font></a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.jdt.core.tests.model_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.jdt.core.tests.model_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.jdt.core.tests.model_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+          <tr>
+            <td>jdt.core.tests.performance</td>
+            <td align="center"><a href="testresults/html/org.eclipse.jdt.core.tests.performance_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.jdt.core.tests.performance_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.jdt.core.tests.performance_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.jdt.core.tests.performance_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.jdt.core.tests.performance_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.jdt.core.tests.performance_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>jdt.debug.tests</td>
+            <td align="center"><a href="testresults/html/org.eclipse.jdt.debug.tests_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.jdt.debug.tests_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.jdt.debug.tests_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.jdt.debug.tests_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.jdt.debug.tests_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.jdt.debug.tests_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>jdt.text.tests</td>
+            <td align="center"><a href="testresults/html/org.eclipse.jdt.text.tests_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.jdt.text.tests_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.jdt.text.tests_macosx.cocoa.x86_64_8.0.html"><font color="#ff0000">(1)</font></a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.jdt.text.tests_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.jdt.text.tests_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.jdt.text.tests_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>jdt.ui.tests.*</td>
+          </tr>
+          <tr>
+            <td>jdt.ui.tests.refactoring</td>
+            <td align="center"><a href="testresults/html/org.eclipse.jdt.ui.tests.refactoring_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.jdt.ui.tests.refactoring_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.jdt.ui.tests.refactoring_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.jdt.ui.tests.refactoring_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.jdt.ui.tests.refactoring_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.jdt.ui.tests.refactoring_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+          <tr>
+            <td>jdt.ui.tests</td>
+            <td align="center"><a href="testresults/html/org.eclipse.jdt.ui.tests_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.jdt.ui.tests_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.jdt.ui.tests_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.jdt.ui.tests_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.jdt.ui.tests_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.jdt.ui.tests_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>jface.tests.*</td>
+          </tr>
+          <tr>
+            <td>jface.tests.databinding</td>
+            <td align="center"><a href="testresults/html/org.eclipse.jface.tests.databinding_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.jface.tests.databinding_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.jface.tests.databinding_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.jface.tests.databinding_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.jface.tests.databinding_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.jface.tests.databinding_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>jface.text.tests</td>
+            <td align="center"><a href="testresults/html/org.eclipse.jface.text.tests_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.jface.text.tests_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.jface.text.tests_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.jface.text.tests_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.jface.text.tests_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.jface.text.tests_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>ltk.core.refactoring.tests</td>
+            <td align="center"><a href="testresults/html/org.eclipse.ltk.core.refactoring.tests_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.ltk.core.refactoring.tests_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.ltk.core.refactoring.tests_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.ltk.core.refactoring.tests_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.ltk.core.refactoring.tests_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.ltk.core.refactoring.tests_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>ltk.ui.refactoring.tests</td>
+            <td align="center"><a href="testresults/html/org.eclipse.ltk.ui.refactoring.tests_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.ltk.ui.refactoring.tests_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.ltk.ui.refactoring.tests_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.ltk.ui.refactoring.tests_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.ltk.ui.refactoring.tests_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.ltk.ui.refactoring.tests_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>osgi.tests</td>
+            <td align="center"><a href="testresults/html/org.eclipse.osgi.tests_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.osgi.tests_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.osgi.tests_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.osgi.tests_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.osgi.tests_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.osgi.tests_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>pde.api.tools.tests</td>
+            <td align="center"><a href="testresults/html/org.eclipse.pde.api.tools.tests_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.pde.api.tools.tests_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.pde.api.tools.tests_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.pde.api.tools.tests_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.pde.api.tools.tests_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.pde.api.tools.tests_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>pde.build.tests</td>
+            <td align="center"><a href="testresults/html/org.eclipse.pde.build.tests_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.pde.build.tests_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.pde.build.tests_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.pde.build.tests_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.pde.build.tests_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.pde.build.tests_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>pde.ds.tests</td>
+            <td align="center"><a href="testresults/html/org.eclipse.pde.ds.tests_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.pde.ds.tests_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.pde.ds.tests_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.pde.ds.tests_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.pde.ds.tests_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.pde.ds.tests_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>pde.ui.tests</td>
+            <td align="center"><a href="testresults/html/org.eclipse.pde.ui.tests_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.pde.ui.tests_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.pde.ui.tests_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.pde.ui.tests_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.pde.ui.tests_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.pde.ui.tests_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>releng.tests</td>
+            <td align="center"><a href="testresults/html/org.eclipse.releng.tests_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.releng.tests_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.releng.tests_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.releng.tests_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.releng.tests_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.releng.tests_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>search.tests</td>
+            <td align="center"><a href="testresults/html/org.eclipse.search.tests_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.search.tests_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.search.tests_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.search.tests_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.search.tests_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.search.tests_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>swt.tests</td>
+            <td align="center"><a href="testresults/html/org.eclipse.swt.tests_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.swt.tests_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.swt.tests_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.swt.tests_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.swt.tests_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.swt.tests_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>team.tests.*</td>
+          </tr>
+          <tr>
+            <td>team.tests.core</td>
+            <td align="center"><a href="testresults/html/org.eclipse.team.tests.core_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.team.tests.core_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.team.tests.core_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.team.tests.core_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.team.tests.core_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.team.tests.core_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+          <tr>
+            <td>team.tests.cvs.core</td>
+            <td align="center"><a href="testresults/html/org.eclipse.team.tests.cvs.core_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.team.tests.cvs.core_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.team.tests.cvs.core_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.team.tests.cvs.core_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.team.tests.cvs.core_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.team.tests.cvs.core_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>text.tests</td>
+            <td align="center"><a href="testresults/html/org.eclipse.text.tests_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.text.tests_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.text.tests_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.text.tests_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.text.tests_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.text.tests_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>ua.tests.*</td>
+          </tr>
+          <tr>
+            <td>ua.tests.doc</td>
+            <td align="center"><a href="testresults/html/org.eclipse.ua.tests.doc_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.ua.tests.doc_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.ua.tests.doc_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.ua.tests.doc_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.ua.tests.doc_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.ua.tests.doc_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+          <tr>
+            <td>ua.tests</td>
+            <td align="center"><a href="testresults/html/org.eclipse.ua.tests_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.ua.tests_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.ua.tests_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.ua.tests_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.ua.tests_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.ua.tests_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>ui.editors.tests</td>
+            <td align="center"><a href="testresults/html/org.eclipse.ui.editors.tests_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.ui.editors.tests_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.ui.editors.tests_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.ui.editors.tests_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.ui.editors.tests_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.ui.editors.tests_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>ui.tests.*</td>
+          </tr>
+          <tr>
+            <td>ui.tests.forms</td>
+            <td align="center"><a href="testresults/html/org.eclipse.ui.tests.forms_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.ui.tests.forms_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.ui.tests.forms_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.ui.tests.forms_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.ui.tests.forms_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.ui.tests.forms_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+          <tr>
+            <td>ui.tests.navigator</td>
+            <td align="center"><a href="testresults/html/org.eclipse.ui.tests.navigator_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.ui.tests.navigator_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.ui.tests.navigator_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.ui.tests.navigator_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.ui.tests.navigator_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.ui.tests.navigator_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+          <tr>
+            <td>ui.tests</td>
+            <td align="center"><a href="testresults/html/org.eclipse.ui.tests_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.ui.tests_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.ui.tests_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.ui.tests_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.ui.tests_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.ui.tests_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>ui.workbench.texteditor.tests</td>
+            <td align="center"><a href="testresults/html/org.eclipse.ui.workbench.texteditor.tests_linux.gtk.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.ui.workbench.texteditor.tests_linux.gtk.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.ui.workbench.texteditor.tests_macosx.cocoa.x86_64_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.ui.workbench.texteditor.tests_macosx.cocoa.x86_64_8.0.xml">(XML)</a></td>
+            <td align="center"><a href="testresults/html/org.eclipse.ui.workbench.texteditor.tests_win32.win32.x86_8.0.html">(0)</a>&nbsp;<a
+              style="color: #AAAAAA"
+              title="XML Test Result (e.g. for importing into the Eclipse JUnit view)"
+              href="testresults/xml/org.eclipse.ui.workbench.texteditor.tests_win32.win32.x86_8.0.xml">(XML)</a></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table
+        width="65%"
+        border="1"
+        bgcolor="#EEEEEE"
+        rules="groups"
+        align="center">
+        <tr bgcolor="#9999CC">
+          <th
+            width="80%"
+            align="center">Missing Files</th>
+          <th align="center">Status</th>
+        </tr>
+
+      </table>
+
+    </div>
+
+    <div class="homeitem3col">
+    <h3 id="PluginsErrors">Plugins containing compile errors or warnings</h3>
+
+      &nbsp;&nbsp;The table below shows the plugins in which errors or warnings were encountered. Click on the jar file link to view its detailed report.
+      
+      <table
+        width="77%"
+        border="1">
+        <tr>
+          <td>Compile Logs (Jar Files)</td>
+          <td>Errors</td>
+          <td>Warnings</td>
+        </tr>
+      </table>
+
+      <table
+        width="77%"
+        border="1">
+        <tr>
+          <td>Compile Logs (Jar Files)</td>
+          <td>Forbidden Access Warnings</td>
+          <td>Discouraged Access Warnings</td>
+        </tr>
+
+        <tr>
+          <td><a href="compilelogs/plugins/org.eclipse.compare_3.5.700.v20151225-0213/@dot.html">/plugins/org.eclipse.compare_3.5.700.v20151225-0213/@dot.html</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.compare_3.5.700.v20151225-0213/@dot.html#FORBIDDEN_WARNINGS">0</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.compare_3.5.700.v20151225-0213/@dot.html#DISCOURAGED_WARNINGS">8</a></td>
+        </tr>
+        <tr>
+          <td><a href="compilelogs/plugins/org.eclipse.e4.core.commands_0.11.0.v20151005-1655/@dot.html">/plugins/org.eclipse.e4.core.commands_0.11.0.v20151005-1655/@dot.html</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.e4.core.commands_0.11.0.v20151005-1655/@dot.html#FORBIDDEN_WARNINGS">0</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.e4.core.commands_0.11.0.v20151005-1655/@dot.html#DISCOURAGED_WARNINGS">2</a></td>
+        </tr>
+        <tr>
+          <td><a href="compilelogs/plugins/org.eclipse.e4.core.services_2.0.0.v20151110-2052/@dot.html">/plugins/org.eclipse.e4.core.services_2.0.0.v20151110-2052/@dot.html</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.e4.core.services_2.0.0.v20151110-2052/@dot.html#FORBIDDEN_WARNINGS">0</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.e4.core.services_2.0.0.v20151110-2052/@dot.html#DISCOURAGED_WARNINGS">27</a></td>
+        </tr>
+        <tr>
+          <td><a href="compilelogs/plugins/org.eclipse.e4.tools.emf.ui_4.5.0.v20151104-1703/@dot.html">/plugins/org.eclipse.e4.tools.emf.ui_4.5.0.v20151104-1703/@dot.html</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.e4.tools.emf.ui_4.5.0.v20151104-1703/@dot.html#FORBIDDEN_WARNINGS">0</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.e4.tools.emf.ui_4.5.0.v20151104-1703/@dot.html#DISCOURAGED_WARNINGS">2926</a></td>
+        </tr>
+        <tr>
+          <td><a href="compilelogs/plugins/org.eclipse.e4.ui.css.core_0.11.0.v20151229-1224/@dot.html">/plugins/org.eclipse.e4.ui.css.core_0.11.0.v20151229-1224/@dot.html</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.e4.ui.css.core_0.11.0.v20151229-1224/@dot.html#FORBIDDEN_WARNINGS">0</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.e4.ui.css.core_0.11.0.v20151229-1224/@dot.html#DISCOURAGED_WARNINGS">3</a></td>
+        </tr>
+        <tr>
+          <td><a href="compilelogs/plugins/org.eclipse.e4.ui.css.swt.theme_0.10.0.v20151005-1656/@dot.html">/plugins/org.eclipse.e4.ui.css.swt.theme_0.10.0.v20151005-1656/@dot.html</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.e4.ui.css.swt.theme_0.10.0.v20151005-1656/@dot.html#FORBIDDEN_WARNINGS">0</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.e4.ui.css.swt.theme_0.10.0.v20151005-1656/@dot.html#DISCOURAGED_WARNINGS">10</a></td>
+        </tr>
+        <tr>
+          <td><a href="compilelogs/plugins/org.eclipse.e4.ui.swt.gtk_1.0.100.v20150708-1541/@dot.html">/plugins/org.eclipse.e4.ui.swt.gtk_1.0.100.v20150708-1541/@dot.html</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.e4.ui.swt.gtk_1.0.100.v20150708-1541/@dot.html#FORBIDDEN_WARNINGS">0</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.e4.ui.swt.gtk_1.0.100.v20150708-1541/@dot.html#DISCOURAGED_WARNINGS">3</a></td>
+        </tr>
+        <tr>
+          <td><a href="compilelogs/plugins/org.eclipse.e4.ui.workbench.addons.swt_1.2.0.v20151215-0730/@dot.html">/plugins/org.eclipse.e4.ui.workbench.addons.swt_1.2.0.v20151215-0730/@dot.html</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.e4.ui.workbench.addons.swt_1.2.0.v20151215-0730/@dot.html#FORBIDDEN_WARNINGS">0</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.e4.ui.workbench.addons.swt_1.2.0.v20151215-0730/@dot.html#DISCOURAGED_WARNINGS">9</a></td>
+        </tr>
+        <tr>
+          <td><a href="compilelogs/plugins/org.eclipse.e4.ui.workbench.renderers.swt.cocoa_0.11.300.v20150813-1519/@dot.html">/plugins/org.eclipse.e4.ui.workbench.renderers.swt.cocoa_0.11.300.v20150813-1519/@dot.html</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.e4.ui.workbench.renderers.swt.cocoa_0.11.300.v20150813-1519/@dot.html#FORBIDDEN_WARNINGS">0</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.e4.ui.workbench.renderers.swt.cocoa_0.11.300.v20150813-1519/@dot.html#DISCOURAGED_WARNINGS">52</a></td>
+        </tr>
+        <tr>
+          <td><a href="compilelogs/plugins/org.eclipse.e4.ui.workbench.renderers.swt_0.14.0.v20151215-1956/@dot.html">/plugins/org.eclipse.e4.ui.workbench.renderers.swt_0.14.0.v20151215-1956/@dot.html</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.e4.ui.workbench.renderers.swt_0.14.0.v20151215-1956/@dot.html#FORBIDDEN_WARNINGS">0</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.e4.ui.workbench.renderers.swt_0.14.0.v20151215-1956/@dot.html#DISCOURAGED_WARNINGS">26</a></td>
+        </tr>
+        <tr>
+          <td><a href="compilelogs/plugins/org.eclipse.e4.ui.workbench.swt_0.14.0.v20151202-1616/@dot.html">/plugins/org.eclipse.e4.ui.workbench.swt_0.14.0.v20151202-1616/@dot.html</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.e4.ui.workbench.swt_0.14.0.v20151202-1616/@dot.html#FORBIDDEN_WARNINGS">0</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.e4.ui.workbench.swt_0.14.0.v20151202-1616/@dot.html#DISCOURAGED_WARNINGS">17</a></td>
+        </tr>
+        <tr>
+          <td><a href="compilelogs/plugins/org.eclipse.e4.ui.workbench_1.4.0.v20151209-1030/@dot.html">/plugins/org.eclipse.e4.ui.workbench_1.4.0.v20151209-1030/@dot.html</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.e4.ui.workbench_1.4.0.v20151209-1030/@dot.html#FORBIDDEN_WARNINGS">0</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.e4.ui.workbench_1.4.0.v20151209-1030/@dot.html#DISCOURAGED_WARNINGS">18</a></td>
+        </tr>
+        <tr>
+          <td><a href="compilelogs/plugins/org.eclipse.help.base_4.1.0.v20151229-0800/@dot.html">/plugins/org.eclipse.help.base_4.1.0.v20151229-0800/@dot.html</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.help.base_4.1.0.v20151229-0800/@dot.html#FORBIDDEN_WARNINGS">0</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.help.base_4.1.0.v20151229-0800/@dot.html#DISCOURAGED_WARNINGS">8</a></td>
+        </tr>
+        <tr>
+          <td><a href="compilelogs/plugins/org.eclipse.help.ui_4.0.100.v20151202-2026/@dot.html">/plugins/org.eclipse.help.ui_4.0.100.v20151202-2026/@dot.html</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.help.ui_4.0.100.v20151202-2026/@dot.html#FORBIDDEN_WARNINGS">0</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.help.ui_4.0.100.v20151202-2026/@dot.html#DISCOURAGED_WARNINGS">3</a></td>
+        </tr>
+        <tr>
+          <td><a href="compilelogs/plugins/org.eclipse.jdt.debug_3.10.0.v20151209-2022/jdimodel.jar.html">/plugins/org.eclipse.jdt.debug_3.10.0.v20151209-2022/jdimodel.jar.html</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.jdt.debug_3.10.0.v20151209-2022/jdimodel.jar.html#FORBIDDEN_WARNINGS">0</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.jdt.debug_3.10.0.v20151209-2022/jdimodel.jar.html#DISCOURAGED_WARNINGS">8</a></td>
+        </tr>
+        <tr>
+          <td><a href="compilelogs/plugins/org.eclipse.jface.examples.databinding_1.0.300.v20151203-0232/@dot.html">/plugins/org.eclipse.jface.examples.databinding_1.0.300.v20151203-0232/@dot.html</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.jface.examples.databinding_1.0.300.v20151203-0232/@dot.html#FORBIDDEN_WARNINGS">0</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.jface.examples.databinding_1.0.300.v20151203-0232/@dot.html#DISCOURAGED_WARNINGS">30</a></td>
+        </tr>
+        <tr>
+          <td><a href="compilelogs/plugins/org.eclipse.pde.api.tools.ui_1.1.0.v20151217-1552/@dot.html">/plugins/org.eclipse.pde.api.tools.ui_1.1.0.v20151217-1552/@dot.html</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.pde.api.tools.ui_1.1.0.v20151217-1552/@dot.html#FORBIDDEN_WARNINGS">0</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.pde.api.tools.ui_1.1.0.v20151217-1552/@dot.html#DISCOURAGED_WARNINGS">22</a></td>
+        </tr>
+        <tr>
+          <td><a href="compilelogs/plugins/org.eclipse.pde.build_3.9.100.v20150521-1524/lib_pdebuild-ant.jar.html">/plugins/org.eclipse.pde.build_3.9.100.v20150521-1524/lib_pdebuild-ant.jar.html</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.pde.build_3.9.100.v20150521-1524/lib_pdebuild-ant.jar.html#FORBIDDEN_WARNINGS">0</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.pde.build_3.9.100.v20150521-1524/lib_pdebuild-ant.jar.html#DISCOURAGED_WARNINGS">96</a></td>
+        </tr>
+        <tr>
+          <td><a href="compilelogs/plugins/org.eclipse.pde.build_3.9.100.v20150521-1524/pdebuild.jar.html">/plugins/org.eclipse.pde.build_3.9.100.v20150521-1524/pdebuild.jar.html</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.pde.build_3.9.100.v20150521-1524/pdebuild.jar.html#FORBIDDEN_WARNINGS">0</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.pde.build_3.9.100.v20150521-1524/pdebuild.jar.html#DISCOURAGED_WARNINGS">636</a></td>
+        </tr>
+        <tr>
+          <td><a href="compilelogs/plugins/org.eclipse.pde.core_3.11.0.v20151217-0937/@dot.html">/plugins/org.eclipse.pde.core_3.11.0.v20151217-0937/@dot.html</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.pde.core_3.11.0.v20151217-0937/@dot.html#FORBIDDEN_WARNINGS">0</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.pde.core_3.11.0.v20151217-0937/@dot.html#DISCOURAGED_WARNINGS">61</a></td>
+        </tr>
+        <tr>
+          <td><a href="compilelogs/plugins/org.eclipse.pde.ds.ui_1.1.0.v20151208-0530/@dot.html">/plugins/org.eclipse.pde.ds.ui_1.1.0.v20151208-0530/@dot.html</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.pde.ds.ui_1.1.0.v20151208-0530/@dot.html#FORBIDDEN_WARNINGS">0</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.pde.ds.ui_1.1.0.v20151208-0530/@dot.html#DISCOURAGED_WARNINGS">9</a></td>
+        </tr>
+        <tr>
+          <td><a href="compilelogs/plugins/org.eclipse.pde.junit.runtime_3.5.0.v20151013-0625/@dot.html">/plugins/org.eclipse.pde.junit.runtime_3.5.0.v20151013-0625/@dot.html</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.pde.junit.runtime_3.5.0.v20151013-0625/@dot.html#FORBIDDEN_WARNINGS">0</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.pde.junit.runtime_3.5.0.v20151013-0625/@dot.html#DISCOURAGED_WARNINGS">3</a></td>
+        </tr>
+        <tr>
+          <td><a href="compilelogs/plugins/org.eclipse.pde.launching_3.6.400.v20151202-2019/@dot.html">/plugins/org.eclipse.pde.launching_3.6.400.v20151202-2019/@dot.html</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.pde.launching_3.6.400.v20151202-2019/@dot.html#FORBIDDEN_WARNINGS">0</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.pde.launching_3.6.400.v20151202-2019/@dot.html#DISCOURAGED_WARNINGS">6</a></td>
+        </tr>
+        <tr>
+          <td><a href="compilelogs/plugins/org.eclipse.pde.runtime_3.5.0.v20151119-1013/@dot.html">/plugins/org.eclipse.pde.runtime_3.5.0.v20151119-1013/@dot.html</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.pde.runtime_3.5.0.v20151119-1013/@dot.html#FORBIDDEN_WARNINGS">0</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.pde.runtime_3.5.0.v20151119-1013/@dot.html#DISCOURAGED_WARNINGS">31</a></td>
+        </tr>
+        <tr>
+          <td><a href="compilelogs/plugins/org.eclipse.pde.ui_3.8.300.v20151217-0850/@dot.html">/plugins/org.eclipse.pde.ui_3.8.300.v20151217-0850/@dot.html</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.pde.ui_3.8.300.v20151217-0850/@dot.html#FORBIDDEN_WARNINGS">0</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.pde.ui_3.8.300.v20151217-0850/@dot.html#DISCOURAGED_WARNINGS">59</a></td>
+        </tr>
+        <tr>
+          <td><a href="compilelogs/plugins/org.eclipse.team.cvs.ui_3.3.800.v20150731-0856/@dot.html">/plugins/org.eclipse.team.cvs.ui_3.3.800.v20150731-0856/@dot.html</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.team.cvs.ui_3.3.800.v20150731-0856/@dot.html#FORBIDDEN_WARNINGS">0</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.team.cvs.ui_3.3.800.v20150731-0856/@dot.html#DISCOURAGED_WARNINGS">16</a></td>
+        </tr>
+        <tr>
+          <td><a href="compilelogs/plugins/org.eclipse.team.examples.filesystem_3.4.400.v20150219-1458/@dot.html">/plugins/org.eclipse.team.examples.filesystem_3.4.400.v20150219-1458/@dot.html</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.team.examples.filesystem_3.4.400.v20150219-1458/@dot.html#FORBIDDEN_WARNINGS">0</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.team.examples.filesystem_3.4.400.v20150219-1458/@dot.html#DISCOURAGED_WARNINGS">72</a></td>
+        </tr>
+        <tr>
+          <td><a href="compilelogs/plugins/org.eclipse.team.ui_3.7.300.v20151117-1911/@dot.html">/plugins/org.eclipse.team.ui_3.7.300.v20151117-1911/@dot.html</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.team.ui_3.7.300.v20151117-1911/@dot.html#FORBIDDEN_WARNINGS">0</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.team.ui_3.7.300.v20151117-1911/@dot.html#DISCOURAGED_WARNINGS">379</a></td>
+        </tr>
+        <tr>
+          <td><a href="compilelogs/plugins/org.eclipse.ui.cocoa_1.1.100.v20151202-1450/@dot.html">/plugins/org.eclipse.ui.cocoa_1.1.100.v20151202-1450/@dot.html</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.ui.cocoa_1.1.100.v20151202-1450/@dot.html#FORBIDDEN_WARNINGS">0</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.ui.cocoa_1.1.100.v20151202-1450/@dot.html#DISCOURAGED_WARNINGS">2</a></td>
+        </tr>
+        <tr>
+          <td><a href="compilelogs/plugins/org.eclipse.ui.forms_3.7.0.v20151202-1950/@dot.html">/plugins/org.eclipse.ui.forms_3.7.0.v20151202-1950/@dot.html</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.ui.forms_3.7.0.v20151202-1950/@dot.html#FORBIDDEN_WARNINGS">0</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.ui.forms_3.7.0.v20151202-1950/@dot.html#DISCOURAGED_WARNINGS">44</a></td>
+        </tr>
+        <tr>
+          <td><a href="compilelogs/plugins/org.eclipse.ui.ide.application_1.1.100.v20151202-1450/@dot.html">/plugins/org.eclipse.ui.ide.application_1.1.100.v20151202-1450/@dot.html</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.ui.ide.application_1.1.100.v20151202-1450/@dot.html#FORBIDDEN_WARNINGS">0</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.ui.ide.application_1.1.100.v20151202-1450/@dot.html#DISCOURAGED_WARNINGS">3</a></td>
+        </tr>
+        <tr>
+          <td><a href="compilelogs/plugins/org.eclipse.ui.ide_3.12.0.v20151224-1907/@dot.html">/plugins/org.eclipse.ui.ide_3.12.0.v20151224-1907/@dot.html</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.ui.ide_3.12.0.v20151224-1907/@dot.html#FORBIDDEN_WARNINGS">0</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.ui.ide_3.12.0.v20151224-1907/@dot.html#DISCOURAGED_WARNINGS">5</a></td>
+        </tr>
+        <tr>
+          <td><a href="compilelogs/plugins/org.eclipse.ui.workbench_3.108.0.v20151209-1609/@dot.html">/plugins/org.eclipse.ui.workbench_3.108.0.v20151209-1609/@dot.html</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.ui.workbench_3.108.0.v20151209-1609/@dot.html#FORBIDDEN_WARNINGS">0</a></td>
+          <td align="center"><a href="compilelogs/plugins/org.eclipse.ui.workbench_3.108.0.v20151209-1609/@dot.html#DISCOURAGED_WARNINGS">58</a></td>
+        </tr>
+
+
+      </table>
+
+    </div>
+  </div>
+</body>
+</html>
