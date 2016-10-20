@@ -1,20 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
-        A utility ant script get the base builder from Git (or CVS).
-        Hudson jobs (or builds) can call this script from generic ant
-        as one of it first build steps to get the eclipse antRunner, for example.
-    -->
+<!--
+  Copyright (c) 2016 IBM Corporation and others.
+  All rights reserved. This program and the accompanying materials
+  are made available under the terms of the Eclipse Public License v1.0
+  which accompanies this distribution, and is available at
+  http://www.eclipse.org/legal/epl-v10.html
+
+  Contributors:
+  David Williams - initial API and implementation
+-->
+
+<!--
+  A utility ant script which gets the Eclipse Platform binary from 'archive' server then uses it to
+  install additional tools and utilities from several p2 repositories: from 'downloads', the 'build' machine,
+  and one that is on an 'external' site, to actually test that proxies work. (The external one is a "real" project,
+  so this script should not be ran so often to "stress" that site, or throw off their download statistics.)
+
+  Hudson jobs (or builds) can call a script like this one from generic ant
+  as one of it first build steps to get the eclipse tools or applications, such as antRunner.
+-->
 <project
   name="getBaseBuilder"
   default="getBaseBuilder"
   basedir=".">
-
 
   <target
     name="init"
     unless="getBaseBuilderInitialized">
 
     <property environment="env" />
+
+    <!-- this property file is optional. It's primarily used to set
+      the "proxy setting preferences" for Eclpse. -->
+    <property file="platformSpecific.properties" />
+
+    <!-- jvm usually set in the platformSpecific.properties file, but if not, we
+      will force one possibly valid value. -->
+    <property
+      name="jvm"
+      value="/shared/common/jdk1.8.0_x64-latest/bin" />
+
 
     <condition
       property="TMP"
@@ -25,59 +50,135 @@
       property="TMP"
       value="${TMP_DIR}">
       <isset property="TMP_DIR" />
-
     </condition>
+
     <condition
       property="TMP"
       value="${env.BUILD_ROOT}/tmp">
       <isset property="${env.BUILD_ROOT}" />
-
     </condition>
+
     <condition
       property="TMP"
       value="${BUILD_ROOT}/tmp">
       <isset property="${BUILD_ROOT}" />
     </condition>
+
+    <property
+      name="TMP"
+      value="${basedir}/tmp" />
+
     <fail
       unless="TMP"
       message="TMP not defined, since TMP_DIR nor BUILD_ROOT was defined" />
     <echo message="TMP: ${TMP}" />
 
+    <mkdir dir="${TMP}" />
+
     <condition
-      property="downloadHost"
-      value="${env.DOWNLOAD_HOST}"
-      else="archive.eclipse.org">
-      <isset property="env.DOWNLOAD_HOST" />
+      property="basedownloadHost"
+      value="${env.BASE_DOWNLOAD_HOST}"
+      else="download.eclipse.org">
+      <isset property="env.BASE_DOWNLOAD_HOST" />
     </condition>
-        <!--
-            TODO: need make platform independent, as in test.xml, to compute right one.
-            (and, pass in?)
-            (and make "version" variable)
-        -->
+    <!--
+      TODO: need make platform independent, as in test.xml, to compute right one.
+      (and, pass in?)
+      (and make "version" variable)
+    -->
+    <!-- example of typical value, when "directory" and "label" are different
+      <property name="eclipseBaseDir" value="S-4.6M3-201510291100"/>
+      <property name="eclispeBaseLabel" value="4.6M3"/>
+    -->
+    <!-- for I or M build (which is the unusual case) the build directory and label are the same -->
+    <property
+      name="eclipseBaseDir"
+      value="S-4.7M2-201609150230" />
+    <property
+      name="eclispeBaseLabel"
+      value="4.7M2" />
+
     <property
       name="platformURL"
-      value="http://${downloadHost}/eclipse/downloads/drops4/R-4.4-201406061215" />
-
-        <!-- we currently use binary platform, since smaller, but could use SDK, if ever a reason to -->
-        <!-- moved to SDK to get API Tools -->
+      value="http://${basedownloadHost}/eclipse/downloads/drops4/${eclipseBaseDir}" />
+    <!--
+      We used to use binary platform, since smaller, but moved to SDK, to be able to use API Tools.
+      But then moved back to Platform, after having some cases where we need to pick up new fixes from
+      API tools while continuting to use older "base" for stability.
+    -->
     <property
       name="platformFile"
-      value="eclipse-SDK-4.4-linux-gtk-x86_64.tar.gz" />
+      value="eclipse-platform-${eclispeBaseLabel}-linux-gtk-x86_64.tar.gz" />
+
+    <!--
+      mavenproperties.properties is produced during the build and contains
+      significant variables (and values) that control the build. In this context,
+      'eclipserun-repo' is the one we want, so we only have to set it one place.
+      In "post-build" work, WORKSPACE is passed in as the "drop directory" on
+      the build machine, which is where the properties are written.
+    -->
+    <property file="${WORKSPACE}/mavenproperties.properties" />
+
+    <echo message="eclipserun-repo: ${eclipserun-repo}" />
+    <!--
+      just in case mavenproperties.properties did not exist, we also
+      set a default value here. And, for now, at least, we have some
+      special logic to provide clear message "it was not set". We can
+      remove that, or change to a "fail" if we find it is always set
+      as expected in the ways we use it. (such as, may not exist yet,
+      if this is called too early?)
+    -->
+
+    <condition
+      property="eclipserun-repo-is-set"
+      value="${eclipserun-repo}"
+      else="not set">
+      <isset property="eclipserun-repo" />
+    </condition>
+    <echo message="DEBUG: Before setting default, eclisperun-repo was found to be ${eclipserun-repo-is-set}" />
+    <!-- the following setting is just to make sure we have a reasonable "fallback" value, such as when
+      using this script on Hudson to do "clean up" of repositories. Should change it to "well known" version,
+      such as updates/4.6/ once it is ready.
+    -->
+    <property
+      name="eclipserun-repo"
+      value="http://download.eclipse.org/eclipse/updates/4.7-I-builds/" />
+    <echo message="eclipserun-repo: ${eclipserun-repo}" />
+
+    <property
+      name="apiTools.repository"
+      value="${eclipserun-repo}" />
+    <property
+      name="apiTools.iu"
+      value="org.eclipse.pde.api.tools" />
+    <!-- since we specify specific repo for api tools, we can leave version to "highest" -->
+    <property
+      name="apiTools.iu.version"
+      value="" />
 
     <property
       name="buildTools.repository"
       value="http://build.eclipse.org/eclipse/buildtools/" />
+    <property
+      name="buildTools.feature"
+      value="org.eclipse.releng.build.tools.feature.feature.group" />
+    <!-- Here, even though not specific repo, we always want the "latest". But, if that ever changes,
+      we can specify a concrete version here.
+    -->
+    <property
+      name="buildTools.feature.version"
+      value="" />
+
+    <property
+      name="buildTools.derby.feature"
+      value="org.apache.derby.core.feature.feature.group" />
+    <property
+      name="buildTools.derby.feature.version"
+      value="" />
 
     <property
       name="webtools.repository"
       value="http://download.eclipse.org/webtools/releng/repository/" />
-    <property
-      name="buildTools.feature"
-      value="org.eclipse.releng.build.tools.feature.feature.group" />
-      <!-- value="1.0.0.v20140325-1404" -->
-    <property
-      name="buildTools.feature.version"
-      value="" />
     <property
       name="webtools.feature"
       value="org.eclipse.wtp.releng.tools.feature.feature.group" />
@@ -85,76 +186,43 @@
       name="webtools.feature.version"
       value="1.2.0.v201102200505-21-7w312213311616" />
 
+    <!--
+      This repo ONLY used for testing proxies. Not production runs.
+      Have included this "external" site, just to give a true
+      test of the proxies themselves. I got this site from "marketplace"
+      and because this is a "real" project for someone, we should not
+      overuse the "test" aspect, or will throw off their numbers.
+      If it is ever desired to "run this test" ever day, or similar,
+      then a better "test site" should be found or created. -->
+    <property
+      name="external.repository"
+      value=" http://fabrizioiannetti.github.io/p2/" />
+    <property
+      name="external.feature"
+      value="com.github.fabeclipse.textedgrep_feature.feature.group" />
+    <property
+      name="external.feature.version"
+      value="" />
 
-        <!-- assign defaults if not on hudson, for local testing if nothing else -->
+    <!-- assign default WORKSPACE if not on Hudson, for local testing if nothing else -->
     <property
       name="WORKSPACE"
       value="${basedir}" />
+    <echo message="WORKSPACE: ${WORKSPACE}" />
 
-    <property
-      name="builderVersion"
-      value="R38M6PlusRC3G" />
-
-    <property
-      name="cvsRoot"
-      value=":pserver:anonymous@dev.eclipse.org:/cvsroot/eclipse" />
-    <property
-      name="cvsProject"
-      value="org.eclipse.releng.basebuilder" />
-
-        <!-- the desired folder name (made to stay consistent with cvs module name, though Git project
-             is named eclipse.platform.releng.basebuilder fil-->
+    <!--
+      The desired folder name (made to stay consistent with cvs module name,
+      even though Git project is named eclipse.platform.releng.basebuilder.
+      And, *this* script does not even need to git the Git project!
+    -->
     <property
       name="folderName"
       value="org.eclipse.releng.basebuilder" />
 
-    <condition
-      property="fetchSource"
-      value="git">
-      <not>
-        <isset property="basebuilderlocal" />
-      </not>
-    </condition>
+    <property
+      name="java8vmbindir"
+      value="/shared/common/jdk1.8.0_x64-latest/bin/" />
 
-    <echo message="WORKSPACE: ${WORKSPACE}" />
-    <echo message="fetchSource: ${fetchSource}" />
-
-        <!-- leave useGit undefined to imply to use CVS. Callers can override git defaults with -DfetchSource=cvs
-             or, anything besides 'git' implies cvs.
-        -->
-    <condition
-      property="useGit"
-      value="true">
-      <equals
-        arg1="${fetchSource}"
-        arg2="git"
-        casesensitive="false"
-        trim="true" />
-    </condition>
-    <echo message="useGit: ${useGit}" />
-        <!-- don't need? yet
-             <echo message="BUILD_ID: ${BUILD_ID}" />
-             <echo message="BUILD_NUMBER: ${BUILD_NUMBER}" />
-             <echo message="JOB_NAME: ${JOB_NAME}" />
-             <echo message="buildId: ${buildId}" />
-             -->
-
-
-       <!-- not used? But, may want in future?
-        <condition
-            property="buildcleanarg"
-            value="-Dbuild.clean=${build.clean}"
-            else="">
-            <isset property="build.clean" />
-        </condition>
-
-        <condition
-            property="buildercleanarg"
-            value="-Dcheckout.builder.clean=${checkout.builder.clean}"
-            else="">
-            <isset property="checkout.builder.clean" />
-        </condition>
-       -->
     <property
       name="getBaseBuilderInitialized"
       value="true" />
@@ -164,7 +232,7 @@
   <target
     name="getBaseBuilder"
     depends="init">
-        <!-- remove old one, if there, and make sure one exists for eventual checkout/copy/globmapper -->
+    <!-- remove old one, if there, and make sure one exists for eventual checkout/copy/globmapper -->
     <delete dir="${WORKSPACE}/${folderName}" />
     <mkdir dir="${WORKSPACE}/${folderName}" />
     <antcall target="fetchBasePlatform" />
@@ -178,20 +246,20 @@
       dest="${TMP}/${platformFile}"
       src="${platformURL}/${platformFile}"
       usetimestamp="true" />
-    <!-- untar is broken in Ant 1.9.4. See https://bz.apache.org/bugzilla/show_bug.cgi?id=56641
+    <!-- untar is broken in Ant 1.9.4. See https://bz.apache.org/bugzilla/show_bug.cgi?id=56641 -->
     <untar
       compression="gzip"
       src="${TMP}/${platformFile}"
       dest="${TMP}">
     </untar>
-    -->
-    <exec
+    <!-- untar is broken in Ant 1.9.4. See https://bz.apache.org/bugzilla/show_bug.cgi?id=56641
+      <exec
       executable="/bin/tar"
       dir="${TMP}">
       <arg value="-xf" />
       <arg value="${TMP}/${platformFile}" />
-    </exec>
-
+      </exec>
+    -->
     <chmod perm="ugo+x">
       <fileset dir="${TMP}/eclipse">
         <include name="eclipse" />
@@ -199,8 +267,11 @@
       </fileset>
     </chmod>
 
+    <antcall target="installSettings" />
+
     <exec
       dir="${TMP}/eclipse"
+      failonerror="true"
       executable="${TMP}/eclipse/eclipse">
       <arg value="-nosplash" />
       <arg value="-debug" />
@@ -210,23 +281,40 @@
       <arg value="-application" />
       <arg value="org.eclipse.equinox.p2.director" />
       <arg value="-repository" />
-      <arg value="${buildTools.repository},${webtools.repository}" />
+      <arg value="${eclipserun-repo},${buildTools.repository},${webtools.repository}" />
       <arg value="-installIU" />
-      <arg value="${buildTools.feature}/${buildTools.feature.version},${webtools.feature}/${webtools.feature.version}" />
-      <arg line="-vmargs -Djava.io.tmpdir=${TMP}" />
+      <arg
+        value="${apiTools.iu}/${apiTools.iu.version},${buildTools.feature}/${buildTools.feature.version},${webtools.feature}/${webtools.feature.version},${buildTools.derby.feature}/${buildTools.derby.feature.version}" />
+      <arg value="-vm" />
+      <arg value="${java8vmbindir}" />
+      <!-- vmargs must come last -->
+      <arg value="-vmargs" />
+      <arg value="-Djava.io.tmpdir=${TMP}" />
       <arg value="-Dorg.eclipse.ecf.provider.filetransfer.excludeContributors=org.eclipse.ecf.provider.filetransfer.httpclient4" />
     </exec>
 
-        <!-- we "move" so the directory structure so it flat under basebuilder ...
-             for compatibility to older code/scripts  -->
+    <!-- we "move" so the directory structure so it flat under basebuilder ...
+      for compatibility to very old code/scripts -->
     <move todir="${WORKSPACE}/${folderName}">
-      <fileset dir="${TMP}/eclipse/">
-
-      </fileset>
+      <fileset dir="${TMP}/eclipse/" />
     </move>
 
     <echo
-      message="platform and tools installed, platformURL: ${platformURL} platform: ${platformFile}, fetched using tychoeclipsebuilder/getBaseBuilderAndTools.xml" />
+      message="platform and tools installed. platformURL: ${platformURL} platform: ${platformFile}, fetched using tychoeclipsebuilder/getBaseBuilderAndTools.xml" />
+    <echo message="The following were the properties in effect:" />
+    <echoproperties />
+  </target>
+  <target
+    name="installSettings"
+    if="org.eclipse.core.net.prefs">
+    <property
+      name="settingsDir"
+      value="org.eclipse.releng.basebuilder/configuration/.settings" />
+
+    <mkdir dir="${settingsDir}" />
+    <echo
+      message="${org.eclipse.core.net.prefs}"
+      file="${settingsDir}/org.eclipse.core.net.prefs" />
   </target>
 
 </project>
