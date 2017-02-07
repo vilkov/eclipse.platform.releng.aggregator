@@ -86,7 +86,22 @@
           </execution>
         </executions>
       </plugin>
-
+      <plugin>
+        <groupId>org.eclipse.cbi.maven.plugins</groupId>
+        <artifactId>eclipse-dmg-packager</artifactId>
+        <version>${cbi-plugins.version}</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>package-dmg</goal>
+            </goals>
+            <phase>integration-test</phase>
+            <configuration>
+              <source>org.eclipse.platform.ide-macosx.x86_64.tar.gz</source>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
   <profiles>
@@ -107,7 +122,6 @@
               </execution>
             </executions>
           </plugin>
-
           <plugin>
             <groupId>org.eclipse.cbi.maven.plugins</groupId>
             <artifactId>eclipse-macsigner-plugin</artifactId>
