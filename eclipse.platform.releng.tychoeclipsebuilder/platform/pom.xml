@@ -98,6 +98,8 @@
             <phase>integration-test</phase>
             <configuration>
               <source>${project.build.directory}/products/org.eclipse.platform.ide-macosx.x86_64.tar.gz</source>
+              <continueOnFail>true</continueOnFail>
+              <log>${project.build.directory}/products/log.txt</log>
             </configuration>
           </execution>
         </executions>
