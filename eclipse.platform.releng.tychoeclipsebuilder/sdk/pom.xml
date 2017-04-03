@@ -34,6 +34,7 @@
 
   <properties>
     <product-id>org.eclipse.sdk.ide</product-id>
+    <signDmg>false</signDmg>
   </properties>
 
   <build>
@@ -85,12 +86,33 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>org.eclipse.cbi.maven.plugins</groupId>
+        <artifactId>eclipse-dmg-packager</artifactId>
+        <version>${cbi-plugins.version}</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>package-dmg</goal>
+            </goals>
+            <phase>integration-test</phase>
+            <configuration>
+              <source>${project.build.directory}/products/org.eclipse.sdk.ide-macosx.cocoa.x86_64.tar.gz</source>
+              <continueOnFail>true</continueOnFail>
+              <sign>${signDmg}</sign>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
 
   <profiles>
     <profile>
       <id>eclipse-sign</id>
+      <properties>
+        <signDmg>true</signDmg>
+      </properties>
       <build>
         <plugins>
           <plugin>
@@ -106,7 +128,6 @@
               </execution>
             </executions>
           </plugin>
-
           <plugin>
             <groupId>org.eclipse.cbi.maven.plugins</groupId>
             <artifactId>eclipse-macsigner-plugin</artifactId>
@@ -120,25 +141,6 @@
               </execution>
             </executions>
           </plugin>
-          <plugin>
-            <groupId>org.eclipse.cbi.maven.plugins</groupId>
-            <artifactId>eclipse-dmg-packager</artifactId>
-            <version>${cbi-plugins.version}</version>
-            <executions>
-              <execution>
-                <goals>
-                  <goal>package-dmg</goal>
-                </goals>
-                <phase>integration-test</phase>
-                <configuration>
-                  <source>${project.build.directory}/products/org.eclipse.sdk.ide-macosx.cocoa.x86_64.tar.gz</source>
-                  <continueOnFail>true</continueOnFail>
-                  <sign>true</sign>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-
         </plugins>
       </build>
     </profile>
