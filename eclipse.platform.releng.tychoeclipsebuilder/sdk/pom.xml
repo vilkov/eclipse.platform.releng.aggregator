@@ -98,6 +98,7 @@
             <configuration>
               <source>${project.build.directory}/products/org.eclipse.sdk.ide-macosx.cocoa.x86_64.tar.gz</source>
               <continueOnFail>true</continueOnFail>
+              <sign>true</sign>
             </configuration>
           </execution>
         </executions>
