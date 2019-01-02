@@ -9,7 +9,7 @@
    <launcherArgs>
       <programArgs>--launcher.defaultAction openFile  --launcher.appendVmargs
       </programArgs>
-      <vmArgs>-Dosgi.requiredJavaVersion=1.8 -Dosgi.dataAreaRequiresExplicitInit=true -Xms256m -Xmx1024m --add-modules=ALL-SYSTEM
+      <vmArgs>-Dosgi.requiredJavaVersion=1.8 -Dosgi.dataAreaRequiresExplicitInit=true -Xss10m -Xmn1000m -Xms4096m -Xmx8192m -XX:PermSize=1024m -XX:MaxPermSize=2048m -XX:+DoEscapeAnalysis -XX:+UseFastAccessorMethods -XX:+AggressiveOpts -XX:+UseG1GC -XX:+UseStringDeduplication -Declipse.p2.max.threads=10 --add-modules=ALL-SYSTEM
       </vmArgs>
       <vmArgsMac>-Xdock:icon=../Resources/Eclipse.icns -XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts
       </vmArgsMac>
